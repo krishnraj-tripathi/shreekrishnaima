@@ -5,85 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shree Krishna Influencer Marketing Agency</title>
 
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS Styles -->
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4B0082;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #4B0082;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: url('https://images.unsplash.com/photo-1529253355930-7f1d2c74a0d8?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: #fff;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 0;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            z-index: 1;
+            position: relative;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            z-index: 1;
+            position: relative;
+        }
+        .hero .buttons a {
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 0 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            z-index: 1;
+            position: relative;
+        }
+        .btn.primary {
+            background: #4B0082;
+            color: #fff;
+        }
+        .btn.primary:hover {
+            background: #6a00c1;
+        }
+        .btn.secondary {
+            background: #fff;
+            color: #4B0082;
+            border: 2px solid #4B0082;
+        }
+        .btn.secondary:hover {
+            background: #4B0082;
+            color: #fff;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fff;
+        }
+        .about h2 {
+            font-size: 2.2rem;
+            color: #4B0082;
+            margin-bottom: 20px;
+        }
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Social Links */
+        .links {
+            text-align: center;
+            padding: 80px 20px;
+            background: #f3f3f3;
+        }
+        .links h2 {
+            font-size: 2rem;
+            color: #4B0082;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            transition: 0.4s;
+        }
+        .card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #4B0082;
+        }
+        .card span {
+            font-weight: 600;
+        }
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #4B0082;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media(max-width:768px) {
+            .navbar ul {
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .cards {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">श्री Krishna IMA</div>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#links">Connect</a></li>
-    </ul>
-</nav>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">श्री Krishna IMA</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#links">Connect</a></li>
+        </ul>
+    </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-    <h1>Shree Krishna<br>Influencer Marketing Agency</h1>
-    <p>Connecting Brands with Powerful Creators 🚀</p>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <h1>Shree Krishna<br>Influencer Marketing Agency</h1>
+        <p>Connecting Brands with Powerful Creators 🚀</p>
 
-    <div class="buttons">
-        <a href="https://sites.google.com/view/shreekrishnamarketing/home" target="_blank" class="btn primary">
-            Join as Creator
-        </a>
-        <a href="mailto:Influencers.shreekrishnaima@zohomail.in" class="btn secondary">
-            Contact Us
-        </a>
-    </div>
-</section>
+        <div class="buttons">
+            <a href="https://forms.gle/eQgnMQff64L98y1Q9" target="_blank" class="btn primary">
+                Join as Creator
+            </a>
+            <a href="mailto:Influencers.shreekrishnaima@zohomail.in" class="btn secondary">
+                Contact Us
+            </a>
+        </div>
+    </section>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-    <h2>About Us</h2>
-    <p>
-        Shree Krishna Influencer Marketing Agency helps brands grow
-        using authentic creators. We connect influencers with real
-        paid collaboration opportunities.
-    </p>
-</section>
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>
+            Shree Krishna Influencer Marketing Agency helps brands grow
+            using authentic creators. We connect influencers with real
+            paid collaboration opportunities.
+        </p>
+    </section>
 
-<!-- SOCIAL LINKS -->
-<section class="links" id="links">
-    <h2>Connect With Us</h2>
+    <!-- SOCIAL LINKS -->
+    <section class="links" id="links">
+        <h2>Connect With Us</h2>
 
-    <div class="cards">
+        <div class="cards">
+            <a class="card instagram" href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
 
-        <a class="card instagram" href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">
-            <i class="fab fa-instagram"></i>
-            <span>Instagram</span>
-        </a>
+            <a class="card telegram" href="https://t.me/shreekrishnaIMA" target="_blank">
+                <i class="fab fa-telegram"></i>
+                <span>Telegram</span>
+            </a>
 
-        <a class="card telegram" href="https://t.me/shreekrishnaIMA" target="_blank">
-            <i class="fab fa-telegram"></i>
-            <span>Telegram</span>
-        </a>
+            <a class="card email" href="mailto:Influencers.shreekrishnaima@zohomail.in">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
 
-        <a class="card email" href="mailto:Influencers.shreekrishnaima@zohomail.in">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-        </a>
+            <a class="card form" href="https://forms.gle/eQgnMQff64L98y1Q9" target="_blank">
+                <i class="fas fa-pen-to-square"></i>
+                <span>Creator Form</span>
+            </a>
+        </div>
+    </section>
 
-        <a class="card form" href="https://sites.google.com/view/shreekrishnamarketing/home" target="_blank">
-            <i class="fas fa-pen-to-square"></i>
-            <span>Creator Form</span>
-        </a>
-
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2025 Shree Krishna Influencer Marketing Agency</p>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Shree Krishna Influencer Marketing Agency</p>
+    </footer>
 
 </body>
 </html>
