@@ -10,10 +10,24 @@ html {
 }
 
 body {
-  background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
-  background-size: 600% 600%;
-  animation: bgMove 12s ease infinite;
-  color: #fff;
+  margin: 0;
+  padding-top: 70px; /* navbar space */
+  font-family: 'Poppins', sans-serif;
+
+  background: linear-gradient(
+    -45deg,
+    #0f0c29,
+    #302b63,
+    #24243e,
+    #3a1c71
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
 }
 
 @keyframes bgMove {
@@ -21,6 +35,18 @@ body {
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 /* NAVBAR */
 .navbar {
@@ -186,4 +212,5 @@ footer {
   padding: 20px;
   background: rgba(0,0,0,0.6);
 }
+
 
