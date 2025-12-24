@@ -1,4 +1,3 @@
-// PRICE LIST
 const prices = {
   views: 49,
   followers: 199,
@@ -9,21 +8,13 @@ const prices = {
 
 const serviceSelect = document.getElementById("service");
 const priceSpan = document.getElementById("price");
-const paymentDiv = document.getElementById("payment");
 const usernameInput = document.getElementById("username");
 
-// Update price when service changes
 serviceSelect.addEventListener("change", function () {
-  const selectedService = this.value;
-
-  if (prices[selectedService]) {
-    priceSpan.innerText = prices[selectedService];
-  } else {
-    priceSpan.innerText = 0;
-  }
+  const service = this.value;
+  priceSpan.innerText = prices[service] || 0;
 });
 
-// Verify button function
 function verify() {
   const service = serviceSelect.value;
   const username = usernameInput.value.trim();
@@ -38,5 +29,5 @@ function verify() {
     return;
   }
 
-  paymentDiv.style.display = "block";
+  alert("Order verified successfully!\nWe will contact you soon.");
 }
