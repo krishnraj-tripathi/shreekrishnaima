@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   color: #ffffff;
@@ -185,3 +185,4 @@ footer {
   padding: 20px;
   background: rgba(0,0,0,0.6);
   }
+
