@@ -1,3 +1,4 @@
+alert("JS Loaded Successfully");
 const prices = {
   views: 80,
   followers: 200,
