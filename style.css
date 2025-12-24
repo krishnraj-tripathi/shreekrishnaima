@@ -9,60 +9,23 @@ html {
   scroll-behavior: smooth;
 }
 
-/* style.css me add kare */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
   background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-
+  animation: gradientBG 15s ease infinite;
   color: #ffffff;
   overflow-x: hidden;
 }
 
-}
-
-@keyframes bgMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+/* BACKGROUND ANIMATION */
 @keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
 
 /* NAVBAR */
-;
-  display: flex;
-  gap: 25px;
-}.navbar {
+.navbar {
   position: fixed;
   top: 0;
   width: 100%;
@@ -80,8 +43,18 @@ body {
   font-weight: 700;
 }
 
+.logo-img {
+  width: 50px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
 .navbar ul {
-  list-style: none
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
 
 .navbar a {
   color: #fff;
@@ -92,14 +65,6 @@ body {
 .navbar a:hover {
   color: #ffd700;
 }
-  /* Navbar Logo Image */
-.logo-img {
-    width: 50px;          
-    height: auto;
-    vertical-align: middle;
-    margin-right: 10px; 
-}
-
 
 /* HERO */
 .hero {
@@ -125,17 +90,17 @@ body {
   text-shadow: 0 0 15px rgba(255,215,0,0.7);
 }
 
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(40px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
 .typing {
   margin-top: 15px;
   font-size: 1.2rem;
-  opacity: 0;
   animation: fadeUp 2s ease forwards;
   animation-delay: 0.5s;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* BUTTONS */
@@ -180,11 +145,6 @@ body {
   text-align: center;
 }
 
-.about h2 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-}
-
 /* LINKS */
 .links {
   padding: 80px 10%;
@@ -209,14 +169,9 @@ body {
 }
 
 @keyframes float {
-  0% {transform: translateY(0);}
-  50% {transform: translateY(-10px);}
-  100% {transform: translateY(0);}
-}
-
-.card i {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
 .card:hover {
@@ -229,8 +184,4 @@ footer {
   text-align: center;
   padding: 20px;
   background: rgba(0,0,0,0.6);
-}
-
-
-
-
+  }
