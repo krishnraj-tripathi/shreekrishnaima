@@ -2,11 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: #0a0a0a;
+  background: #000;
   color: #fff;
 }
 
@@ -15,11 +15,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: rgba(0,0,0,0.85);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: 15px 20px;
+  background: #000;
 }
 
 .logo {
@@ -29,139 +26,98 @@ body {
 }
 
 .logo img {
-  width: 45px;
+  width: 35px;
+}
+
+.logo span {
+  font-size: 18px;
 }
 
 .nav-links {
   display: flex;
-  list-style: none;
   gap: 25px;
 }
 
 .nav-links a {
-  color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  color: #fff;
+  font-size: 16px;
 }
 
-.cta-nav {
-  background: #ffd700;
-  color: #000;
-  padding: 8px 15px;
-  border-radius: 20px;
-}
-
-/* Hamburger */
-.menu-toggle {
+.hamburger {
   display: none;
-  font-size: 28px;
+  flex-direction: column;
+  gap: 5px;
   cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
 }
 
 /* HERO */
 .hero {
-  height: 90vh;
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
   text-align: center;
-}
-
-.hero canvas {
-  position: absolute;
-  inset: 0;
+  padding: 20px;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding: 0 15px;
-}
-
-/* ✅ PERFECT SINGLE LINE HEADING */
-.hero-title {
-  white-space: nowrap;          /* EK LINE */
-  font-size: clamp(0.9rem, 2.8vw, 3rem);
   max-width: 100%;
-  display: inline-block;
-  transform-origin: center;
+  overflow: hidden;
 }
 
-/* Ultra small phones safety */
-@media (max-width: 360px) {
-  .hero-title {
-    transform: scale(0.9);
-  }
+.hero-title {
+  white-space: nowrap;        /* EK LINE */
+  display: inline-block;
+  font-size: 3rem;
+  transform-origin: center;
 }
 
 .hero-title span {
   color: #ffd700;
 }
 
-.hero-content p {
+.hero-subtitle {
   margin-top: 15px;
+  font-size: 18px;
+  opacity: 0.9;
 }
 
-.cta-btn {
+.btn {
   display: inline-block;
   margin-top: 25px;
-  padding: 12px 30px;
+  padding: 14px 30px;
   background: #ffd700;
   color: #000;
-  border-radius: 50px;
+  border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
 }
 
-/* Sections */
-.about, .links, .services {
-  padding: 80px 40px;
-  text-align: center;
-}
-
-/* Cards */
-.link-cards, .service-cards {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.card, .service-card {
-  background: #1a1a1a;
-  padding: 30px;
-  border-radius: 15px;
-}
-
-/* Footer */
-footer {
-  padding: 25px;
-  text-align: center;
-  background: #111;
-  color: #aaa;
-}
-
-/* Responsive Nav */
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-  }
-
+/* RESPONSIVE */
+@media (max-width: 768px) {
   .nav-links {
     position: absolute;
-    top: 70px;
-    right: 20px;
+    top: 65px;
+    right: 0;
     background: #000;
     flex-direction: column;
-    padding: 20px;
-    border-radius: 12px;
+    width: 100%;
     display: none;
+    padding: 20px 0;
   }
 
   .nav-links.active {
     display: flex;
   }
+
+  .hamburger {
+    display: flex;
   }
+}
