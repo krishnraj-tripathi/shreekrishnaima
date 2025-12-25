@@ -1,45 +1,24 @@
-/* Hamburger */
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
+/* HAMBURGER MENU */
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
+hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
-/* Canvas particles (same as before) */
-const canvas = document.getElementById("heroCanvas");
-const ctx = canvas.getContext("2d");
+/* AUTO SCALE HEADING (NO CUT, NO …) */
+function fitHeading() {
+  const el = document.getElementById("heroTitle");
+  const parent = el.parentElement;
 
-function resize() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
-resize();
-addEventListener("resize", resize);
+  let scale = 1;
+  el.style.transform = "scale(1)";
 
-let particles = [];
-for (let i = 0; i < 100; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    dx: (Math.random() - 0.5),
-    dy: (Math.random() - 0.5)
-  });
+  while (el.scrollWidth > parent.clientWidth && scale > 0.4) {
+    scale -= 0.01;
+    el.style.transform = `scale(${scale})`;
+  }
 }
 
-function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p => {
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "#ffd700";
-    ctx.fill();
-  });
-  requestAnimationFrame(animate);
-}
-animate();
+window.addEventListener("load", fitHeading);
+window.addEventListener("resize", fitHeading);
