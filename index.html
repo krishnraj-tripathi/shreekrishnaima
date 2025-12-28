@@ -3,238 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shree Krishna Influencer Marketing Agency | Grow Your Brand</title>
+<title>Shree Krishna Influencer Marketing Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
 
 <style>
-/* --- RESET & BASE --- */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{
-  background: #050505;
-  /* NO IMAGE - Only Premium Dark Gradient */
-  background-image: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 20%),
-                    radial-gradient(circle at 90% 80%, rgba(0, 255, 153, 0.05) 0%, transparent 20%);
-  color:#fff;
-  overflow-x:hidden; /* Horizontal Scroll rokne ke liye */
+  background: url('Backgroundpc.png') no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+  overflow-x:hidden;
 }
 html{scroll-behavior:smooth;}
 
-/* --- ANIMATIONS --- */
-.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
-.reveal.active{opacity:1;transform:translateY(0);}
+/* Header */
+header{position:fixed;width:100%;top:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;}
+.logo img{width:55px;border-radius:50%;border:2px solid gold;}
+nav ul{display:flex;gap:25px;list-style:none;}
+nav a{color:#fff;text-decoration:none;font-weight:500;}
+nav a:hover{color:gold;}
+.hamburger{display:none;flex-direction:column;cursor:pointer;}
+.hamburger div{width:25px;height:3px;background:#fff;margin:4px;}
 
-/* --- HEADER --- */
-header{position:fixed;width:100%;top:0;z-index:1000;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,215,0,0.1);}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;max-width:1400px;margin:auto;}
+/* Hero */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px;}
+.hero h1{color:gold;font-size:clamp(1.6rem,4vw,2.5rem);}
+.hero-buttons{margin-top:25px;display:flex;gap:15px;flex-wrap:wrap;}
+.btn{padding:12px 25px;border-radius:6px;font-weight:600;text-decoration:none;white-space:nowrap;}
+.btn-primary{background:gold;color:#000;}
+.btn-secondary{border:2px solid gold;color:gold;}
 
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{width:50px;height:50px;border-radius:50%;border:2px solid #ffd700;object-fit:cover;}
-.logo span{font-weight:700;font-size:1.2rem;color:#fff;}
-
-nav ul{display:flex;gap:30px;list-style:none;}
-nav a{color:#e0e0e0;text-decoration:none;font-weight:500;font-size:0.95rem;transition:0.3s;position:relative;}
-nav a::after{content:'';position:absolute;width:0;height:2px;bottom:-5px;left:0;background:#ffd700;transition:0.3s;}
-nav a:hover{color:#ffd700;}
-nav a:hover::after{width:100%;}
-
-/* --- HAMBURGER MENU (ANDROID FIX) --- */
-.hamburger{
-    display:none;
-    flex-direction:column;
-    cursor:pointer;
-    z-index: 2000; /* Sabse upar dikhega */
-}
-.hamburger div{
-    width:30px;
-    height:3px;
-    background:#ffd700;
-    margin: 5px 0;
-    border-radius: 5px;
-    transition:0.3s;
-}
-
-/* --- HERO SECTION --- */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-  position:relative;
-  width: 100%;
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.hero-title {
-    /* PC Styling */
-    font-size: 3.5rem;
-    line-height: 1.2;
-    background: linear-gradient(to right, #ffd700, #fff, #ffd700);
-    -webkit-background-clip: text;
-    color: transparent;
-    margin-bottom: 15px;
-    font-weight: 700;
-    max-width: 1200px;
-}
-
-.hero p{font-size:1.2rem;color:#ccc;margin-bottom:2rem;max-width:700px;}
-.hero-buttons{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
-
-.btn{padding:14px 30px;border-radius:50px;font-weight:600;text-decoration:none;transition:0.3s;text-transform:uppercase;font-size:0.9rem;letter-spacing:1px;}
-.btn-primary{background:linear-gradient(45deg, #ffd700, #ffb700);color:#000;box-shadow:0 0 15px rgba(255, 215, 0, 0.4);}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(255, 215, 0, 0.6);}
-.btn-secondary{border:2px solid #ffd700;color:#ffd700;background:transparent;}
-.btn-secondary:hover{background:#ffd700;color:#000;}
-
-/* --- COMMON SECTIONS --- */
+/* Sections */
 section{padding:80px 20px;max-width:1200px;margin:auto;}
-h2{text-align:center;color:#ffd700;margin-bottom:50px;font-size:2.2rem;position:relative;display:inline-block;left:50%;transform:translateX(-50%);}
-h2::after{content:'';display:block;width:60px;height:3px;background:#ffd700;margin:10px auto;}
+h2{text-align:center;color:gold;margin-bottom:40px;}
 
-/* --- CARDS DESIGN --- */
-.connect-card, .service-card, .project-card, .why-box, .stat, .collab-box {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Connect */
+.connect-box{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
+.connect-card{background:linear-gradient(145deg,#0b0c0f,#001f1a,#4b0082);padding:2rem;border-radius:15px;text-align:center;min-width:180px;transition:0.3s;border:2px solid #ffd700;}
+.connect-card:hover{transform:translateY(-10px);box-shadow:0 10px 30px rgba(0,0,0,0.6);border-color:#00ff99;}
+.connect-card i{font-size:2rem;margin-bottom:0.5rem;color:#ffd700;}
+.connect-card p{margin-top:0.5rem;font-weight:500;}
+.connect-card a{color:#ffd700;font-weight:600;text-decoration:none;}
+
+/* About */
+.about p{max-width:800px;margin:0 auto;font-size:1.1rem;line-height:1.8;text-align:center;}
+
+/* Collaborate Section Highlight 3D Box */
+#collab{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem 2rem;margin-bottom:4rem;}
+.collab-box{background:linear-gradient(145deg,#ffd700,#ffea00,#00ff99);border-radius:20px;padding:3rem 4rem;text-align:center;box-shadow:0 15px 40px rgba(255,215,0,0.7),0 10px 20px rgba(0,255,153,0.3);transition: transform 0.5s, box-shadow 0.5s;}
+.collab-box:hover{transform: rotateX(5deg) rotateY(5deg);box-shadow:0 20px 50px rgba(255,215,0,0.9),0 15px 30px rgba(0,255,153,0.5);}
+.collab-box h2{font-size:2rem;color:#000;margin-bottom:2rem;}
+.collab-box a{padding:0.8rem 1.5rem;background:#000;color:#ffd700;font-weight:600;border-radius:10px;transition:0.3s;}
+.collab-box a:hover{background:#111;}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.service-card{background: linear-gradient(145deg,#0b0c0f,#001f1a,#4b0082);padding:2rem;border-radius:15px;text-align:center;transition:0.3s;border:2px solid rgba(255,215,0,0.6);box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+.service-card:hover{transform: translateY(-15px) scale(1.02);box-shadow:0 15px 30px rgba(0,0,0,0.7);border-color:#ffd700;}
+.service-card h3{margin-bottom:1rem;font-size:1.2rem;color:#ffd700;}
+.service-card ul{list-style:none;}
+.service-card ul li{margin:0.5rem 0;}
+.dm-box{margin-top:1rem;background:#000;padding:0.5rem 1rem;border-radius:8px;border:1px solid #ffd700;display:inline-block;transition:0.3s;}
+.dm-box a{color:#ffd700;font-weight:600;}
+.dm-box:hover{background:#111;transform:translateY(-3px);box-shadow:0 5px 10px rgba(255,215,0,0.5);}
+
+/* Project Working Section */
+#project{
+  padding:60px 20px;
+  max-width:1200px;
+  margin:auto;
 }
+.project-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.project-card{background: linear-gradient(145deg,#0b0c0f,#001f1a,#4b0082);padding:2rem;border-radius:15px;text-align:center;transition:0.3s;border:2px solid rgba(255,215,0,0.6);box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+.project-card:hover{transform: translateY(-15px) scale(1.02);box-shadow:0 15px 30px rgba(0,0,0,0.7);border-color:#ffd700;}
+.project-card h3{margin-bottom:1rem;font-size:1.2rem;color:#ffd700;}
+.project-card ul{list-style:none;}
+.project-card ul li{margin:0.5rem 0;}
+.project-card .dm-box{margin-top:1rem;}
+.project-card .dm-box a{color:#ffd700;font-weight:600;text-decoration:none;}
+.project-card .dm-box:hover{background:#111;transform:translateY(-3px);box-shadow:0 5px 10px rgba(255,215,0,0.5);}
 
-/* --- CONNECT --- */
-.connect-box{display:flex;justify-content:center;flex-wrap:wrap;gap:25px;}
-.connect-card{padding:2rem;border-radius:15px;text-align:center;width:200px;transition:0.4s;border-top: 3px solid transparent;}
-.connect-card:hover{transform:translateY(-10px);border-top: 3px solid #ffd700;background:rgba(255,255,255,0.08);}
-.connect-card i{font-size:2.5rem;margin-bottom:1rem;color:#ffd700;}
-.connect-card a{color:#fff;font-weight:600;text-decoration:none;display:block;margin-top:5px;}
+/* Why Choose Us */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.why-box{background:linear-gradient(145deg,#0d0d0d,#1a1a1a);padding:30px;border-radius:15px;box-shadow:0 15px 35px rgba(0,0,0,.6);}
+.why-box:hover{box-shadow:0 0 25px rgba(255,215,0,.6);}
 
-/* --- COLLAB --- */
-#collab{padding:4rem 2rem;}
-.collab-box{border-radius:20px;padding:3rem;text-align:center;border:1px solid #ffd700;position:relative;overflow:hidden;}
-.collab-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);animation:shine 3s infinite;}
-@keyframes shine{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
-.collab-box h2{color:#fff;font-size:1.8rem;margin-bottom:1.5rem;}
-.collab-box a{padding:12px 30px;background:#ffd700;color:#000;font-weight:700;border-radius:5px;text-decoration:none;display:inline-block;}
+/* Live Counters */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;margin-bottom:50px;}
+.stat{padding:30px;border-radius:18px;background:#111;box-shadow:0 15px 35px rgba(0,0,0,.6);text-align:center;}
+.stat span{font-size:42px;font-weight:700;color:gold;}
 
-/* --- GRID LAYOUTS (Center Aligned) --- */
-.services, .project-boxes, .why, .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  justify-content: center; /* Grid items ko center karega */
+/* FAQ */
+details{background:#111;padding:20px;border-radius:12px;margin-bottom:15px;}
+details summary{cursor:pointer;font-weight:600;color:gold;}
+
+/* Footer */
+footer{text-align:center;padding:2rem;background:rgba(0,0,0,0.8);}
+footer a{color:#ffd700;margin:0 0.5rem;}
+
+/* Sticky CTA */
+#sticky-cta{position:fixed;bottom:80px;right:20px;background:#ffd700;color:#000;padding:1rem 1.5rem;border-radius:10px;font-weight:600;cursor:pointer;z-index:200;box-shadow:0 5px 15px rgba(255,215,0,0.6);transition:0.3s;}
+#sticky-cta:hover{background:#ffea00;transform:translateY(-5px);}
+@media(max-width:768px){#sticky-cta{bottom:120px;body{background:url('Background.png') no-repeat center center fixed;background-size:cover;}}}
+
+/* Responsive */
+@media(max-width:768px){ 
+nav ul{display:none;flex-direction:column;position:absolute;top:70px;right:0;background:rgba(0,0,0,0.9);width:200px;padding:1rem;border-radius:0 0 0 10px;} 
+nav ul.active{display:flex;} 
+.hamburger{display:flex;} 
 }
-
-.service-card, .project-card{
-  padding:2rem;
-  border-radius:15px;
-  text-align:center;
-  transition:0.3s;
-  position:relative;
-  overflow:hidden;
-  margin: 0 auto; 
-  width: 100%;
-}
-.service-card:hover, .project-card:hover{transform:translateY(-10px);border-color:#ffd700;}
-.service-card h3, .project-card h3{margin-bottom:1.5rem;font-size:1.4rem;color:#ffd700;}
-.service-card ul, .project-card ul{list-style:none;text-align:left;padding-left:10px;margin-bottom:1.5rem;}
-.service-card ul li, .project-card ul li{margin:0.8rem 0;color:#ddd;font-size:0.95rem;display:flex;align-items:center;}
-.service-card ul li::before, .project-card ul li::before{content:'•';color:#ffd700;font-size:1.5rem;margin-right:10px;line-height:0;}
-
-.dm-box a{display:inline-block;padding:10px 20px;background:rgba(255,215,0,0.1);border:1px solid #ffd700;color:#ffd700;border-radius:5px;text-decoration:none;font-weight:600;transition:0.3s;}
-.dm-box a:hover{background:#ffd700;color:#000;}
-
-/* --- WHY US & STATS --- */
-.why-box{padding:30px;border-radius:15px;text-align:center;font-size:1.1rem;font-weight:500;}
-.why-box:hover{background:rgba(255,215,0,0.1);}
-.stat{padding:30px;border-radius:15px;text-align:center;}
-.stat span{font-size:3.5rem;font-weight:700;color:#ffd700;display:block;}
-.stat p{color:#aaa;text-transform:uppercase;letter-spacing:1px;font-size:0.9rem;margin-top:10px;}
-
-/* --- FAQ --- */
-details{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;margin-bottom:15px;border-left:4px solid #ffd700;}
-details summary{cursor:pointer;font-weight:600;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;}
-details summary::after{content:'+';font-size:1.5rem;color:#ffd700;}
-details[open] summary::after{content:'-';}
-details p{margin-top:15px;color:#ccc;line-height:1.6;}
-
-/* --- FOOTER --- */
-footer{text-align:center;padding:3rem 1rem;background:#000;margin-top:50px;border-top:1px solid #333;}
-footer p{color:#888;margin-bottom:1rem;}
-footer .social-icons a{color:#fff;margin:0 10px;font-size:1.2rem;transition:0.3s;}
-footer .social-icons a:hover{color:#ffd700;}
-
-/* --- FLOATING BOT BUTTON --- */
-.bot-float {position: fixed; bottom: 30px; right: 30px; background: #0088cc; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 0 20px rgba(0, 136, 204, 0.5); z-index: 1000; cursor: pointer; transition: 0.3s; text-decoration: none; animation: float 3s ease-in-out infinite;}
-.bot-float:hover { transform: scale(1.1); }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-/* =========================================
-   ⚡ MOBILE RESPONSIVE FIXES (IMPORTANT) ⚡
-   ========================================= */
-@media(max-width:768px){
-  .navbar{padding:15px 20px;}
-  
-  /* Menu Full Screen Overlay */
-  nav ul{
-      display:none;
-      flex-direction:column;
-      position:fixed;
-      top:70px;
-      right:0;
-      background:rgba(0,0,0,0.95);
-      width:100%;
-      height:100vh;
-      padding:2rem;
-      text-align:center;
-      gap:30px;
-      z-index: 1500;
-  }
-  nav ul.active{display:flex;}
-  
-  /* Force Hamburger to Show */
-  .hamburger{display:flex !important;}
-
-  /* --- SINGLE LINE TITLE FIX --- */
-  .hero-title {
-      /* Screen ki width ke hisaab se font size adjust karega */
-      font-size: 3.8vw !important; 
-      white-space: nowrap; /* Zabardasti 1 line rakhega */
-      width: 100%;
-      margin: 10px auto;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.2rem;
-  }
-
-  /* --- CENTER ALIGNMENT --- */
-  .hero, .hero-buttons, .services, .project-boxes, .why, .stats, .connect-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .service-card, .project-card, .connect-card, .why-box, .stat {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .btn{width:100%; max-width: 280px; text-align:center;}
-  .bot-float{bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px;}
+@media(max-width:480px){ 
+.hero-buttons{flex-direction:column;gap:0.5rem;} 
+.collab-box{padding:2rem 1.5rem;} 
 }
 </style>
 </head>
@@ -242,280 +124,234 @@ footer .social-icons a:hover{color:#ffd700;}
 
 <header>
 <div class="navbar">
-  <div class="logo">
-    <img src="Logo.png" alt="SKIMA Logo">
-    <span>SKIMA</span>
-  </div>
-  <nav>
-  <ul>
-  <li><a href="#home" onclick="toggleMenu()">Home</a></li>
-  <li><a href="#about" onclick="toggleMenu()">About</a></li>
-  <li><a href="#services" onclick="toggleMenu()">Services</a></li>
-  <li><a href="#project" onclick="toggleMenu()">Projects</a></li>
-  <li><a href="#why" onclick="toggleMenu()">Why Us</a></li>
-  <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
-  <li><a href="https://t.me/SKIMA_Helper_bot" target="_blank" style="color:#ffd700;">Chat with Bot</a></li>
-  </ul>
-  </nav>
-  <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+<div class="logo"><img src="Logo.png" alt="Shree Krishna Logo"></div>
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#connect">Connect</a></li>
+<li><a href="#collab">Collaborate</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#project">Project Working</a></li>
+<li><a href="#why">Why Us</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</nav>
+<div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
 </div>
 </header>
 
 <section class="hero" id="home">
-  <div class="reveal">
-    <span class="hero-subtitle">Grow Your Brand With</span>
-    
-    <h1 class="hero-title">Shree Krishna Influencer Marketing Agency</h1>
-    
-    <p>Verified Creators. Real Engagement. Professional Web Solutions.</p>
-    
-    <div class="hero-buttons">
-      <a href="https://t.me/SKIMA_Helper_bot" target="_blank" class="btn btn-primary"><i class="fab fa-telegram-plane"></i> Start Bot</a>
-      <a href="#services" class="btn btn-secondary">Explore Services</a>
-    </div>
-  </div>
+<h1>Welcome to Shree Krishna Influencer Marketing Agency</h1>
+<div class="hero-buttons">
+<a href="#collab" class="btn btn-primary">Collaborate With Us</a>
+<a href="#services" class="btn btn-secondary">View Services</a>
+</div>
 </section>
 
-<section id="connect" class="reveal">
-  <h2>Connect With Us</h2>
-  <div class="connect-box">
-  <div class="connect-card">
-  <i class="fab fa-instagram"></i>
-  <p>Instagram</p>
-  <a href="https://www.instagram.com/shree.krishna.ima" target="_blank">Follow</a>
-  </div>
-  <div class="connect-card">
-  <i class="fab fa-telegram"></i>
-  <p>Telegram</p>
-  <a href="https://t.me/shreekrishnaIMA" target="_blank">Join</a>
-  </div>
-  <div class="connect-card">
-  <i class="fas fa-envelope"></i>
-  <p>Email</p>
-  <a href="mailto:Influencers.shreekrishnaima@zohomail.in">Send Mail</a>
-  </div>
-  </div>
+<section id="connect">
+<h2>Connect With Us</h2>
+<div class="connect-box">
+<div class="connect-card">
+<i class="fab fa-instagram"></i>
+<p>Instagram</p>
+<a href="https://www.instagram.com/shree.krishna.ima" target="_blank">Follow</a>
+</div>
+<div class="connect-card">
+<i class="fab fa-telegram"></i>
+<p>Telegram</p>
+<a href="https://t.me/shreekrishnaIMA" target="_blank">Join</a>
+</div>
+<div class="connect-card">
+<i class="fas fa-envelope"></i>
+<p>Email</p>
+<a href="mailto:Influencers.shreekrishnaima@zohomail.in">Send Mail</a>
+</div>
+</div>
 </section>
 
-<section id="about" class="about reveal">
-  <div class="collab-box" style="border:none; box-shadow:none; background:transparent;">
-  <h2>About Us</h2>
-  <p style="color:#ddd;">Shree Krishna Influencer Marketing Agency helps brands grow through verified creators and provides result-oriented social media growth solutions.</p>
-  </div>
+<section id="about" class="about">
+<h2>About Us</h2>
+<p>Shree Krishna Influencer Marketing Agency helps brands grow through verified creators and provides result-oriented social media growth solutions.</p>
 </section>
 
-<section id="stats" class="reveal">
-  <div class="stats">
-  <div class="stat"><span class="counter" data-target="500">0</span><p>Happy Clients</p></div>
-  <div class="stat"><span class="counter" data-target="15000">0</span><p>Orders Completed</p></div>
-  <div class="stat"><span class="counter" data-target="24">0</span><p>Hours Delivery</p></div>
-  </div>
+<section id="collab">
+<div class="collab-box">
+<h2>Creators – Let’s Collaborate</h2>
+<a href="https://forms.gle/eQgnMQff64L98y1Q9" target="_blank">Open Collaboration Form</a>
+</div>
 </section>
 
 <section id="services">
-  <h2 class="reveal">Our Premium Services</h2>
-  <div class="services">
-  <div class="service-card reveal">
-    <i class="fab fa-instagram" style="font-size:40px; color:#E1306C; margin-bottom:15px;"></i>
-    <h3>Instagram Services</h3>
-    <ul>
-    <li>1,000 Views – ₹80</li>
-    <li>1,000 Followers – ₹200</li>
-    <li>1,000 Likes – ₹70</li>
-    <li>1,000 Story Views – ₹60</li>
-    <li>Reel Views Boost</li>
-    <li>Engagement Package (Likes + Views)</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=paid" target="_blank">Order on Bot</a></div>
-  </div>
-
-  <div class="service-card reveal">
-    <i class="fab fa-youtube" style="font-size:40px; color:#FF0000; margin-bottom:15px;"></i>
-    <h3>YouTube Services</h3>
-    <ul>
-    <li>1,000 Views – ₹150</li>
-    <li>1,000 Likes – ₹140</li>
-    <li>1,000 Subscribers – ₹2,580</li>
-    <li>Watch Time Boost</li>
-    <li>Video Promotion</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=paid" target="_blank">Order on Bot</a></div>
-  </div>
-
-  <div class="service-card reveal">
-    <i class="fab fa-telegram" style="font-size:40px; color:#0088cc; margin-bottom:15px;"></i>
-    <h3>Telegram Services</h3>
-    <ul>
-    <li>1,000 Channel Members – ₹200</li>
-    <li>10,000 Post Views – ₹100</li>
-    <li>1,000 Reactions – ₹100</li>
-    <li>Channel Growth Package</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=paid" target="_blank">Order on Bot</a></div>
-  </div>
-
-  <div class="service-card reveal">
-    <i class="fab fa-facebook" style="font-size:40px; color:#1877F2; margin-bottom:15px;"></i>
-    <h3>Facebook Services</h3>
-    <ul>
-    <li>1,000 Reels Views – ₹100</li>
-    <li>Page Likes + Followers – ₹150</li>
-    <li>1,000 Page Followers – ₹100</li>
-    <li>1,000 Post Likes – ₹110</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=paid" target="_blank">Order on Bot</a></div>
-  </div>
-
-  <div class="service-card reveal">
-    <i class="fab fa-twitter" style="font-size:40px; color:#1DA1F2; margin-bottom:15px;"></i>
-    <h3>Twitter / X Services</h3>
-    <ul>
-    <li>1,000 Likes – ₹220</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=paid" target="_blank">Order on Bot</a></div>
-  </div>
-  </div>
+<h2>Our Services</h2>
+<div class="services">
+<div class="service-card">
+<h3>Instagram Services</h3>
+<ul>
+<li>1,000 Views – ₹80</li>
+<li>1,000 Followers – ₹200</li>
+<li>1,000 Likes – ₹70</li>
+<li>1,000 Story Views – ₹60</li>
+<li>Reel Views Boost</li>
+<li>Engagement Package (Likes + Views)</li>
+</ul>
+<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.ima" target="_blank">DM for Service</a></div>
+</div>
+<div class="service-card">
+<h3>YouTube Services</h3>
+<ul>
+<li>1,000 Views – ₹150</li>
+<li>1,000 Likes – ₹140</li>
+<li>1,000 Subscribers – ₹2,580</li>
+<li>Watch Time Boost</li>
+<li>Video Promotion</li>
+</ul>
+<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.ima" target="_blank">DM for Service</a></div>
+</div>
+<div class="service-card">
+<h3>Telegram Services</h3>
+<ul>
+<li>1,000 Channel Members – ₹200</li>
+<li>10,000 Post Views – ₹100</li>
+<li>1,000 Reactions – ₹100</li>
+<li>Channel Growth Package</li>
+</ul>
+<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.ima" target="_blank">DM for Service</a></div>
+</div>
+<div class="service-card">
+<h3>Facebook Services</h3>
+<ul>
+<li>1,000 Reels Views – ₹100</li>
+<li>Page Likes + Followers (Combo) – ₹150</li>
+<li>1,000 Page Followers – ₹100</li>
+<li>1,000 Post Likes – ₹110</li>
+</ul>
+<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.ima" target="_blank">DM for Service</a></div>
+</div>
+<div class="service-card">
+<h3>Twitter / X Services</h3>
+<ul>
+<li>1,000 Likes – ₹220</li>
+</ul>
+<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.ima" target="_blank">DM for Service</a></div>
+</div>
+</div>
 </section>
 
 <section id="project">
-  <h2 class="reveal">Project Working</h2>
-  <div class="project-boxes">
-  <div class="project-card reveal">
-    <h3>Website & Subdomain Setup</h3>
-    <ul>
-    <li>Custom Website Creation</li>
-    <li>Domain & Subdomain Setup</li>
-    <li>Fully Functional & Responsive</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=projects" target="_blank">Discuss Project</a></div>
-  </div>
-  
-  <div class="project-card reveal">
-    <h3>Vlog Writing</h3>
-    <ul>
-    <li>Engaging Content Writing</li>
-    <li>SEO Optimized Scripts</li>
-    <li>Creative Vlog Ideas</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=projects" target="_blank">Discuss Project</a></div>
-  </div>
-
-  <div class="project-card reveal">
-    <h3>Content Writing</h3>
-    <ul>
-    <li>High-Quality Blog Posts</li>
-    <li>Website Articles & Captions</li>
-    <li>SEO Optimized Content</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=projects" target="_blank">Discuss Project</a></div>
-  </div>
-
-  <div class="project-card reveal">
-    <h3>Telegram Bot Creation</h3>
-    <ul>
-    <li>Custom Telegram Bot Setup</li>
-    <li>Automation & Interaction</li>
-    <li>Admin Control Features</li>
-    </ul>
-    <div class="dm-box"><a href="https://t.me/SKIMA_Helper_bot?start=projects" target="_blank">Discuss Project</a></div>
-  </div>
-  </div>
-</section>
-
-<section id="collab" class="reveal">
-  <div class="collab-box">
-  <h2>Creators – Let’s Collaborate</h2>
-  <p style="color:#ddd; margin-bottom:20px;">Join our network and get paid sponsorships.</p>
-  <a href="https://forms.gle/eQgnMQff64L98y1Q9" target="_blank">Open Collaboration Form</a>
-  </div>
+<h2>Project Working</h2>
+<div class="project-boxes">
+<div class="project-card">
+<h3>Website & Subdomain Setup</h3>
+<ul>
+<li>Custom Website Creation</li>
+<li>Domain & Subdomain Setup</li>
+<li>Fully Functional & Responsive</li>
+</ul>
+<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">DM on Telegram</a></div>
+</div>
+<div class="project-card">
+<h3>Vlog Writing</h3>
+<ul>
+<li>Engaging Content Writing</li>
+<li>SEO Optimized Scripts</li>
+<li>Creative Vlog Ideas</li>
+</ul>
+<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">DM on Telegram</a></div>
+</div>
+<div class="project-card">
+<h3>Content Writing</h3>
+<ul>
+<li>High-Quality Blog Posts</li>
+<li>Website Articles & Captions</li>
+<li>SEO Optimized Content</li>
+</ul>
+<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">DM on Telegram</a></div>
+</div>
+<div class="project-card">
+<h3>Telegram Bot Creation</h3>
+<ul>
+<li>Custom Telegram Bot Setup</li>
+<li>Automation & Interaction</li>
+<li>Admin Control Features</li>
+</ul>
+<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">DM on Telegram</a></div>
+</div>
+</div>
 </section>
 
 <section id="why">
-  <h2 class="reveal">Why Choose Us ⭐</h2>
-  <div class="why">
-  <div class="why-box">✅ Real & High-Quality Engagement</div>
-  <div class="why-box">✅ Trusted by Creators & Brands</div>
-  <div class="why-box">✅ Fast Delivery</div>
-  <div class="why-box">✅ Affordable Pricing</div>
-  <div class="why-box">✅ 24/7 Support</div>
-  </div>
+<h2>Why Choose Us ⭐</h2>
+<div class="why">
+<div class="why-box">✅ Real & High-Quality Engagement</div>
+<div class="why-box">✅ Trusted by Creators & Brands</div>
+<div class="why-box">✅ Fast Delivery</div>
+<div class="why-box">✅ Affordable Pricing</div>
+<div class="why-box">✅ 24/7 Support</div>
+</div>
 </section>
 
-<section id="faq" class="reveal">
-  <h2>FAQ & Refund Policy</h2>
-  <details>
-  <summary>Do you offer refund?</summary>
-  <p>Yes ✅ 101% refund if work is not completed within given time.</p>
-  </details>
-  <details>
-  <summary>Is engagement real?</summary>
-  <p>Yes, we provide real and high-quality engagement only.</p>
-  </details>
-  <details>
-  <summary>How fast delivery?</summary>
-  <p>Mostly within 24–72 hours.</p>
-  </details>
+<section id="stats">
+<h2>Our Growth</h2>
+<div class="stats">
+<div class="stat"><span class="counter" data-target="500">0</span><p>Creators</p></div>
+<div class="stat"><span class="counter" data-target="100">0</span><p>Brands</p></div>
+<div class="stat"><span class="counter" data-target="1000000">0</span><p>Engagement</p></div>
+<div class="stat"><span class="counter" data-target="99">0</span><p>% Success</p></div>
+</div>
+</section>
+
+<section id="faq">
+<h2>FAQ & Refund Policy</h2>
+<details>
+<summary>Do you offer refund?</summary>
+<p>Yes ✅ 101% refund if work is not completed within given time.</p>
+</details>
+<details>
+<summary>Is engagement real?</summary>
+<p>Yes, we provide real and high-quality engagement only.</p>
+</details>
+<details>
+<summary>How fast delivery?</summary>
+<p>Mostly within 24–72 hours.</p>
+</details>
 </section>
 
 <footer>
-  <div class="social-icons">
-  <a href="https://www.instagram.com/shree.krishna.ima" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://t.me/shreekrishnaIMA" target="_blank"><i class="fab fa-telegram"></i></a>
-  <a href="mailto:Influencers.shreekrishnaima@zohomail.in"><i class="fas fa-envelope"></i></a>
-  </div>
-  <p style="margin-top:15px;">&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
+<p>&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
+<div>
+<a href="https://www.instagram.com/shree.krishna.ima" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://t.me/shreekrishnaIMA" target="_blank"><i class="fab fa-telegram"></i></a>
+<a href="mailto:Influencers.shreekrishnaima@zohomail.in"><i class="fas fa-envelope"></i></a>
+</div>
 </footer>
 
-<a href="https://t.me/SKIMA_Helper_bot" target="_blank" class="bot-float">
-  <i class="fas fa-robot"></i>
-</a>
+<a href="#collab" id="sticky-cta">Collaborate With Us</a>
 
 <script>
-// Hamburger Menu
-const menu = document.querySelector('nav ul');
-function toggleMenu(){
-  menu.classList.toggle('active');
-}
+// Hamburger
+const menu=document.querySelector('nav ul');
+function toggleMenu(){menu.classList.toggle('active');}
 
-// Scroll Animation
-window.addEventListener('scroll', reveal);
-function reveal(){
-  var reveals = document.querySelectorAll('.reveal');
-  for(var i = 0; i < reveals.length; i++){
-    var windowheight = window.innerHeight;
-    var revealtop = reveals[i].getBoundingClientRect().top;
-    var revealpoint = 150;
-    if(revealtop < windowheight - revealpoint){
-      reveals[i].classList.add('active');
-    }
-  }
-}
-reveal();
-
-// Counters Animation
-const counters = document.querySelectorAll('.counter');
-let started = false;
-window.addEventListener('scroll', () => {
-  const stats = document.getElementById('stats');
-  if(!stats) return;
-  const rect = stats.getBoundingClientRect();
-  if(rect.top < window.innerHeight && !started){
-    counters.forEach(c => {
-      const target = +c.dataset.target;
-      let count = 0;
-      const inc = target / 100;
-      const run = setInterval(() => {
-        count += inc;
-        if(count >= target){
-          c.innerText = target + "+";
-          clearInterval(run);
-        } else {
-          c.innerText = Math.ceil(count);
-        }
-      }, 20);
-    });
-    started = true;
-  }
+// Counters
+const counters=document.querySelectorAll('.counter');
+let started=false;
+window.addEventListener('scroll',()=>{
+  if(started) return;
+  const stats=document.getElementById('stats').getBoundingClientRect().top;
+  if(stats<window.innerHeight){
+    counters.forEach(c=>{
+      const target=+c.dataset.target;
+      let count=0;
+      const inc=target/200;
+      const run=setInterval(()=>{
+        count+=inc;
+        if(count>=target){c.innerText=target;clearInterval(run);}
+        else{c.innerText=Math.ceil(count);}
+      },10);
+    });
+    started=true;
+  }
 });
 </script>
 
