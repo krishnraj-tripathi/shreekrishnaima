@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join as Creator - Shree Krishna Agency</title>
+    <title>Join as Creator | Shree Krishna Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             color: #e0e0e0;
             display: flex;
-            justify_content: center;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -20,81 +20,157 @@
         .container {
             background: rgba(255, 255, 255, 0.05);
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
+            transition: transform 0.3s ease;
         }
-        h2 { margin-bottom: 10px; color: #FFD700; text-transform: uppercase; letter-spacing: 1px; }
-        p { font-size: 14px; color: #ccc; margin-bottom: 25px; }
+        .container:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        h2 { 
+            margin-bottom: 5px; 
+            color: #FFD700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        p { font-size: 13px; color: #aaa; margin-bottom: 30px; }
+        
         input {
-            width: 100%; padding: 12px; margin: 10px 0;
-            background: rgba(30, 42, 61, 0.8); border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 8px; color: white; outline: none; box-sizing: border-box;
+            width: 100%; 
+            padding: 14px; 
+            margin: 8px 0;
+            background: rgba(0, 0, 0, 0.3); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px; 
+            color: white; 
+            outline: none; 
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        input:focus { 
+            border-color: #FFD700; 
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); 
+        }
+        input::placeholder { color: #888; }
+
+        button {
+            width: 100%; 
+            padding: 15px; 
+            background: linear-gradient(45deg, #FFD700, #ffb900);
+            border: none;
+            border-radius: 10px; 
+            color: #141E30; 
+            font-weight: 700; 
+            font-size: 16px;
+            cursor: pointer; 
+            margin-top: 25px; 
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2); 
             font-family: 'Poppins', sans-serif;
         }
-        input:focus { border-color: #FFD700; box-shadow: 0 0 8px rgba(255, 215, 0, 0.2); }
-        button {
-            width: 100%; padding: 14px; background: #FFD700; border: none;
-            border-radius: 8px; color: #141E30; font-weight: bold; font-size: 16px;
-            cursor: pointer; margin-top: 20px; transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); font-family: 'Poppins', sans-serif;
+        button:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
         }
-        button:hover { background: #ffea00; transform: translateY(-2px); }
-        .loading-text { display: none; color: #FFD700; font-size: 14px; margin-top: 15px; }
-        .back-link { display: block; margin-top: 25px; color: #FFD700; text-decoration: none; font-size: 14px; }
+        button:disabled {
+            background: #555;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .back-link { 
+            display: inline-block; 
+            margin-top: 25px; 
+            color: #ccc; 
+            text-decoration: none; 
+            font-size: 13px; 
+            transition: 0.3s;
+        }
+        .back-link:hover { color: #FFD700; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>🚀 Join Our Team</h2>
-    <p>Fill this form to get paid sponsorships.</p>
+    <p>Earn money with Paid Sponsorships</p>
     
-    <form 
-        action="https://script.google.com/macros/s/AKfycbwE32dfThGEmJXzd3rguCEruKkQ5Rkw4H6xA44WWJibnP3IY_c0Z4JQZwjThj4hcgDPHg/exec" 
-        method="POST" 
-        target="hidden_iframe" 
-        onsubmit="submitted=true;">
-
-        <input type="text" name="Name" placeholder="Full Name" required>
-        <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
-        <input type="url" name="Instagram_Link" placeholder="Instagram/YouTube Link" required>
-        <input type="text" name="Followers" placeholder="Total Followers (e.g. 15k)" required>
-        <input type="number" name="Promo_Price" placeholder="1 Promo Price (₹)" required>
+    <form id="creatorForm" onsubmit="submitForm(event)">
+        
+        <input type="text" id="name" placeholder="👤 Full Name" required>
+        <input type="tel" id="phone" placeholder="📞 WhatsApp Number" required>
+        <input type="url" id="link" placeholder="🔗 Channel/Page Link" required>
+        <input type="text" id="subs" placeholder="👥 Total Followers (e.g. 15k)" required>
+        <input type="number" id="price" placeholder="💰 1 Promo Price (₹)" required>
         
         <button type="submit" id="btnSubmit">Submit & Join</button>
     </form>
     
-    <p id="msg" class="loading-text">⏳ Saving Details...</p>
     <a href="index.html" class="back-link">← Back to Home Page</a>
-
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
 </div>
 
 <script>
-    // ✅ Simple Logic: Form submit hote hi redirect timer chalu
-    var submitted = false;
-    
-    document.querySelector('form').onsubmit = function() {
-        var btn = document.getElementById('btnSubmit');
-        var msg = document.getElementById('msg');
-        
-        // Show Loading
-        submitted = true;
-        btn.innerHTML = "Processing...";
-        btn.style.opacity = "0.7";
-        msg.style.display = "block";
+    function submitForm(event) {
+        event.preventDefault(); // Page reload hone se rokega
 
-        // 1.5 Second wait karein (Data jaane ke liye) phir Redirect karein
-        setTimeout(function() {
-            window.location.href = "index.html";
-        }, 1500); 
-    };
+        // 1. Data Collect Karo
+        var name = document.getElementById("name").value;
+        var phone = document.getElementById("phone").value;
+        var link = document.getElementById("link").value;
+        var subs = document.getElementById("subs").value;
+        var price = document.getElementById("price").value;
+
+        // 2. Button ko "Loading" mode me daalo
+        var btn = document.getElementById("btnSubmit");
+        var originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Sending Details...";
+        btn.disabled = true;
+
+        // 3. Data Pack karo (JSON format)
+        var data = {
+            source: "website_join",
+            name: name,
+            phone: phone,
+            link: link,   // Ye link script me jayega
+            subs: subs,
+            price: price  // Ye price script me jayega
+        };
+
+        // ⚠️ IMP: Apna NAYA '/exec' wala URL yahan paste karein
+        var scriptURL = "https://script.google.com/macros/s/AKfycbwbwioDUKCz3mRvr2K3fzzqWqI6fCbtD29SzQ6jqc7nF0Fjuj7z93sUzHKcIn9j-6Lo/exec";
+
+        // 4. Data Bhejo (Fetch API)
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Cross-origin issue se bachne ke liye
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            // Success hone par
+            alert("✅ Application Sent Successfully!\nAdmin will contact you soon.");
+            window.location.href = "index.html"; // Home page par bhejo
+        })
+        .catch(error => {
+            // Error hone par
+            console.error('Error:', error);
+            alert("⚠️ Something went wrong. Please try again.");
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+    }
 </script>
 
 </body>
