@@ -2,443 +2,457 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Shree Krishna Influencer Marketing Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* --- 1. GLOBAL RESET & VARIABLES --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+/* --- 1. GLOBAL SETTINGS --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
 
 :root {
   --gold: #FFD700;
   --gold-grad: linear-gradient(45deg, #FFD700, #FDB931, #FFD700);
   --dark-bg: #050505;
   --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: 1px solid rgba(255, 215, 0, 0.15);
   --text-main: #e0e0e0;
-  --text-dim: #aaa;
 }
 
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
-  background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
-  color: var(--text-main);
-  overflow-x: hidden;
-  min-height: 100vh;
+  background-color: var(--dark-bg); color: var(--text-main);
+  overflow-x: hidden; min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-html { scroll-behavior: smooth; }
+/* --- 2. RED THEATER CURTAIN ANIMATION --- */
+#theater-curtain {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999; display: flex; pointer-events: none; overflow: hidden;
+}
 
-/* --- 2. HEADER & NAV --- */
+.curtain-panel {
+    width: 50%; height: 100%; position: relative;
+    background: repeating-linear-gradient(90deg, #8B0000 0px, #600000 20px, #B22222 40px, #8B0000 60px);
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.7);
+    transition: transform 2.5s cubic-bezier(0.77, 0, 0.175, 1);
+    border-bottom: 10px solid var(--gold);
+}
+
+.left-curtain { transform-origin: left; border-right: 2px solid rgba(0,0,0,0.5); z-index: 2; }
+.right-curtain { transform-origin: right; border-left: 2px solid rgba(0,0,0,0.5); z-index: 2; }
+
+/* Content behind curtain */
+.curtain-content {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 1; text-align: center; width: 100%; transition: opacity 1s ease;
+}
+.curtain-content h1 {
+    font-size: 3rem; color: var(--gold); text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8); letter-spacing: 5px; margin-bottom: 10px;
+}
+.curtain-content p { color: #fff; font-size: 1.2rem; letter-spacing: 2px; }
+
+/* Open State */
+.curtain-open .left-curtain { transform: translateX(-100%); }
+.curtain-open .right-curtain { transform: translateX(100%); }
+.curtain-open .curtain-content { opacity: 0; }
+
+/* --- 3. HEADER & NAV --- */
 header {
   position: fixed; width: 100%; top: 0; z-index: 1000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1); padding-top: env(safe-area-inset-top);
 }
 
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: auto; }
 
-.logo img { width: 55px; border-radius: 50%; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); border: 2px solid var(--gold); }
+/* LOGO FIX: Forced Perfect Circle */
+.logo img { 
+    width: 55px; height: 55px; 
+    border-radius: 50%; 
+    aspect-ratio: 1 / 1; /* Ensures strict 1:1 ratio */
+    object-fit: cover;   /* Prevents stretching */
+    border: 2px solid var(--gold); 
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
 
 nav ul { display: flex; gap: 30px; list-style: none; }
-nav a { 
-  color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; 
-  text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; 
-}
-nav a:hover { color: var(--gold); text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+nav a { color: #fff; text-decoration: none; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
+nav a:hover { color: var(--gold); }
 
-/* --- 3. HERO SECTION --- */
+/* --- 4. HERO SECTION (Zoom Effect) --- */
 .hero {
-  height: 100vh; display: flex; align-items: center; justify-content: center;
-  flex-direction: column; text-align: center; padding: 20px;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05), transparent 70%);
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 100px 20px 40px; overflow: hidden;
+}
+
+.hero-content {
+    opacity: 0; animation: slowZoom 2.5s ease-out forwards; animation-delay: 0.8s;
+}
+
+@keyframes slowZoom {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px;
   background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.2));
 }
+.hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; }
 
-.hero-buttons { margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-
-.btn {
-  padding: 15px 35px; border-radius: 50px; font-weight: 700; text-decoration: none;
-  transition: 0.3s; letter-spacing: 0.5px; position: relative; overflow: hidden;
-}
-
-.btn-primary {
-  background: var(--gold-grad); color: #000; box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-}
+.btn { padding: 14px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; display: inline-block; margin: 5px; }
+.btn-primary { background: var(--gold-grad); color: #000; box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3); }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
+.btn-secondary { border: 2px solid var(--gold); color: var(--gold); background: transparent; }
+.btn-secondary:hover { background: var(--gold); color: #000; }
 
-.btn-secondary {
-  background: transparent; border: 2px solid var(--gold); color: var(--gold);
-}
-.btn-secondary:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
-
-/* --- 4. GENERAL SECTIONS & GLASS CARDS --- */
+/* --- 5. SECTIONS & CARDS --- */
 section { padding: 80px 20px; max-width: 1200px; margin: auto; }
-
 h2 {
   text-align: center; font-size: 2.2rem; margin-bottom: 50px;
   background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  text-transform: uppercase; letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* Glassmorphism Card Style */
-.connect-card, .service-card, .project-card, .why-box, .stat {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: var(--glass-border);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  transition: 0.4s ease;
-  position: relative;
-  overflow: hidden;
+/* Glass Card */
+.glass-card, .process-step, .testimonial-card, .stat-card {
+    background: var(--glass-bg); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+    padding: 30px; text-align: center; transition: 0.3s;
 }
+.glass-card:hover, .process-step:hover { transform: translateY(-5px); border-color: var(--gold); }
 
-.connect-card:hover, .service-card:hover, .project-card:hover, .why-box:hover, .stat:hover {
-  transform: translateY(-10px);
-  border-color: var(--gold);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+/* Grids */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.niche-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+
+/* Marquee */
+.marquee-container {
+    background: var(--gold); color: #000; padding: 12px 0; overflow: hidden; white-space: nowrap;
+    transform: rotate(-1.5deg); margin: 20px 0 60px; border-top: 2px solid #fff; border-bottom: 2px solid #fff;
 }
+.marquee-track span { font-weight: 800; text-transform: uppercase; margin: 0 30px; font-size: 1.1rem; }
+.marquee-track { display: inline-block; animation: scroll 20s linear infinite; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* Connect Section */
-.connect-box { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
-.connect-card { min-width: 200px; flex: 1; }
-.connect-card i { font-size: 2.5rem; margin-bottom: 15px; color: var(--gold); }
-.connect-card p { font-weight: 600; font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
-.connect-card a { color: var(--gold); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-/* About Text */
-.about p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; text-align: center; color: var(--text-dim); }
-
-/* Collaborate Box (Special Glow) */
-.collab-box {
-  background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
-  border: 1px solid var(--gold); border-radius: 25px; padding: 4rem 2rem;
-  text-align: center; box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+/* Process Steps */
+.process-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+.step-num { 
+    width: 60px; height: 60px; background: var(--gold); color: #000; border-radius: 50%; 
+    font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
 }
-.collab-box h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-.collab-box a {
-  display: inline-block; padding: 15px 40px; background: #fff; color: #000;
-  font-weight: 800; border-radius: 50px; text-decoration: none; transition: 0.3s;
-}
-.collab-box a:hover { background: var(--gold); transform: scale(1.05); }
-
-/* Services & Projects Grid */
-.services, .project-boxes, .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-
-.service-card h3, .project-card h3 { font-size: 1.4rem; color: #fff; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-.service-card ul, .project-card ul { list-style: none; text-align: left; padding-left: 10px; }
-.service-card li, .project-card li { margin: 10px 0; color: var(--text-dim); font-size: 0.95rem; display: flex; align-items: center; }
-.service-card li::before, .project-card li::before { content: '⚡'; margin-right: 10px; color: var(--gold); font-size: 10px; }
-
-.dm-box { margin-top: 20px; display: block; }
-.dm-box a {
-  display: block; width: 100%; padding: 10px; border: 1px solid var(--gold);
-  border-radius: 8px; color: var(--gold); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s;
-}
-.dm-box a:hover { background: var(--gold); color: #000; }
-
-/* Why Us */
-.why-box { font-size: 1.1rem; font-weight: 600; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
 /* Stats */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 50px; }
-.stat span { display: block; font-size: 3.5rem; font-weight: 800; color: var(--gold); text-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-.stat p { color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-top: 5px; }
+.stat-card span { font-size: 3rem; color: var(--gold); font-weight: 800; display: block; }
+
+/* Dual Join Forms (Updated: Both are Gold/Premium now) */
+.split-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+.split-card { 
+    flex: 1; min-width: 300px; padding: 40px 30px; 
+    border-radius: 20px; text-align: center; 
+    border: 1px solid var(--gold); /* Both have gold border now */
+    background: rgba(255, 215, 0, 0.05); /* Slight gold tint for both */
+    transition: 0.3s;
+}
+.split-card:hover { background: rgba(255, 215, 0, 0.1); transform: translateY(-5px); }
 
 /* FAQ */
-details {
-  background: rgba(255,255,255,0.03); border-radius: 10px; padding: 20px;
-  margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-}
-details[open] { background: rgba(255,215,0,0.05); border-color: rgba(255,215,0,0.3); }
-summary { cursor: pointer; font-weight: 600; color: #fff; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-summary::after { content: '+'; font-size: 1.5rem; color: var(--gold); }
+details { background: rgba(255,255,255,0.02); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify-content: space-between; }
+summary::after { content: '+'; color: var(--gold); font-size: 1.5rem; }
 details[open] summary::after { content: '-'; }
-details p { margin-top: 15px; color: var(--text-dim); line-height: 1.6; }
 
 /* Footer */
-footer { text-align: center; padding: 3rem 2rem; background: #000; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; }
-footer p { color: #888; margin-bottom: 20px; }
-footer i { font-size: 1.5rem; color: #fff; margin: 0 15px; transition: 0.3s; }
-footer i:hover { color: var(--gold); transform: scale(1.2); }
+footer { background: #000; padding: 60px 20px; text-align: center; margin-top: 50px; border-top: 1px solid #222; }
+footer i { font-size: 1.5rem; margin: 0 10px; color: #fff; }
 
 /* Sticky CTA */
 #sticky-cta {
-  position: fixed; bottom: 30px; right: 30px;
-  background: var(--gold-grad); color: #000;
-  padding: 15px 30px; border-radius: 50px; font-weight: 700;
-  text-decoration: none; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-  z-index: 999; transition: 0.3s; animation: pulse 2s infinite;
+    position: fixed; bottom: 30px; right: 25px; background: var(--gold-grad); color: #000;
+    padding: 12px 25px; border-radius: 50px; font-weight: 800; text-decoration: none;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); z-index: 998; text-transform: uppercase;
 }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); } }
 
-/* Mobile Menu */
-.hamburger { display: none; flex-direction: column; cursor: pointer; }
-.hamburger div { width: 30px; height: 3px; background: var(--gold); margin: 5px; transition: 0.3s; }
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+.hamburger div { width: 30px; height: 3px; background: var(--gold); border-radius: 2px; transition: 0.3s; }
+.hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.active div:nth-child(2) { opacity: 0; }
+.hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
 @media(max-width: 768px) {
-  nav ul {
-    display: none; flex-direction: column; position: absolute; top: 70px; right: 0;
-    background: rgba(0,0,0,0.95); width: 100%; height: 100vh; padding-top: 50px; text-align: center;
-  }
-  nav ul.active { display: flex; }
-  .hamburger { display: flex; }
-  .hero h1 { font-size: 2.2rem; }
-  #sticky-cta { bottom: 20px; right: 20px; padding: 12px 25px; font-size: 0.9rem; }
+    nav ul { 
+        display: none; position: fixed; top: 0; right: 0; width: 100%; height: 100vh; 
+        background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+        flex-direction: column; justify-content: center; align-items: center; z-index: 999; 
+    }
+    nav ul.active { display: flex; }
+    .hamburger { display: flex; }
+    .marquee-container { transform: rotate(0deg); }
 }
 </style>
 </head>
 <body>
 
-<header>
-<div class="navbar">
-<div class="logo"><img src="Logo.png" alt="Shree Krishna Logo"></div>
-<nav>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#connect">Connect</a></li>
-<li><a href="#collab">Collaborate</a></li>
-<li><a href="#why">Why Us</a></li>
-<li><a href="#project">Solutions</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact-final">Contact</a></li>
-</ul>
-</nav>
-<div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+<div id="theater-curtain">
+    <div class="curtain-content">
+        <h1>Presents</h1>
+        <p>Shree Krishna Agency</p>
+    </div>
+    <div class="curtain-panel left-curtain"></div>
+    <div class="curtain-panel right-curtain"></div>
 </div>
+
+<div id="particles-js" style="position:fixed; width:100%; height:100%; z-index:-1;"></div>
+
+<header>
+    <div class="navbar">
+        <div class="logo"><img src="Logo.png" alt="SK IMA Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#stats">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    </div>
 </header>
 
-<section class="hero" id="home">
-<h1>Welcome to<br>Shree Krishna Agency</h1>
-<div class="hero-buttons">
-<a href="join.html" class="btn btn-primary">👤 Join as Creator</a>
-<a href="#services" class="btn btn-secondary">Explore Services</a>
-</div>
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Shree Krishna<br>Influencer Agency</h1>
+        <p>Bridging the gap between Premium Brands and Viral Creators.</p>
+        <div class="hero-buttons">
+            <a href="#join-us" class="btn btn-primary">Join Now</a>
+            <a href="#services" class="btn btn-secondary">Our Solutions</a>
+        </div>
+    </div>
 </section>
 
-<section id="connect">
-<h2>Connect With Us</h2>
-<div class="connect-box">
-<div class="connect-card">
-<i class="fab fa-instagram"></i>
-<p>Instagram</p>
-<a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">Follow Now</a>
+<div class="marquee-container">
+    <div class="marquee-track">
+        <span>Influencer Marketing <i class="fas fa-star"></i></span>
+        <span>Viral Growth <i class="fas fa-star"></i></span>
+        <span>Brand Deals <i class="fas fa-star"></i></span>
+        <span>Web Development <i class="fas fa-star"></i></span>
+        <span>Telegram Bots <i class="fas fa-star"></i></span>
+        <span>Influencer Marketing <i class="fas fa-star"></i></span>
+    </div>
 </div>
-<div class="connect-card">
-<i class="fab fa-telegram"></i>
-<p>Telegram</p>
-<a href="https://t.me/shreekrishnaIMA" target="_blank">Join Channel</a>
-</div>
-<div class="connect-card">
-<i class="fas fa-envelope"></i>
-<p>Email Support</p>
-<a href="mailto:business_shreekrishnaagency@zohomail.in">Send Mail</a>
-</div>
-</div>
+
+<section id="about">
+    <h2>Who We Are</h2>
+    <div class="glass-card" style="max-width: 800px; margin: auto;">
+        <p style="color: #ccc; line-height: 1.8;">
+            <strong>Shree Krishna IMA</strong> is not just an agency; it's an ecosystem. We identify high-potential creators and match them with brands that need authentic reach. We also provide technical infrastructure like Websites and Bots to automate your business.
+        </p>
+    </div>
 </section>
 
-<section id="about" class="about">
-<h2>Who We Are</h2>
-<p>Shree Krishna Influencer Marketing Agency bridges the gap between premium brands and verified creators. We specialize in organic growth strategies, ensuring your digital presence shines like gold.</p>
+<section id="process">
+    <h2>How We Work</h2>
+    <div class="process-container">
+        <div class="process-step" style="flex:1; min-width:250px;">
+            <div class="step-num">1</div>
+            <h3>Connect</h3>
+            <p style="color:#aaa;">Creators join our roster, Brands submit requirements.</p>
+        </div>
+        <div class="process-step" style="flex:1; min-width:250px;">
+            <div class="step-num">2</div>
+            <h3>Match</h3>
+            <p style="color:#aaa;">We find the perfect fit based on Niche & Budget.</p>
+        </div>
+        <div class="process-step" style="flex:1; min-width:250px;">
+            <div class="step-num">3</div>
+            <h3>Execute</h3>
+            <p style="color:#aaa;">Content is posted, sales are driven, payment is made.</p>
+        </div>
+    </div>
 </section>
 
-<section id="bridge-gap" style="text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-    <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: var(--gold);">Bridging Vision & Viral</h2>
-    <p style="max-width: 800px; margin: 0 auto; color: #ccc; font-size: 1.1rem; line-height: 1.8;">
-        At <strong>Shree Krishna Agency</strong>, we don't just connect people; we build ecosystems. 
-        We stand as the powerful bridge between <strong>Brands</strong> looking for impact and <strong>Creators</strong> deserving of value. 
-        <br><br>
-        We eliminate the friction of negotiation and strategy, ensuring that Talent meets Opportunity seamlessly. 
-        Whether you are a brand chasing ROI or a creator chasing growth, we are the link that makes it happen.
-    </p>
-</section>
-<section id="collab">
-<div class="collab-box">
-<h2>Are You a Creator?</h2>
-<p style="color:#ccc; margin-bottom: 20px;">Join our exclusive network and get paid sponsorships.</p>
-<a href="join.html">Apply Now 🚀</a>
-</div>
-</section>
-
-<section id="why">
-<h2>Why Choose Us</h2>
-<div class="why">
-<div class="why-box"><i class="fas fa-check-circle" style="color:var(--gold)"></i> High Quality</div>
-<div class="why-box"><i class="fas fa-bolt" style="color:var(--gold)"></i> Fast Delivery</div>
-<div class="why-box"><i class="fas fa-shield-alt" style="color:var(--gold)"></i> 100% Secure</div>
-<div class="why-box"><i class="fas fa-headset" style="color:var(--gold)"></i> 24/7 Support</div>
-</div>
-</section>
-
-<section id="stats">
-<h2>Agency Impact</h2>
-<div class="stats">
-<div class="stat"><span class="counter" data-target="500">0</span><p>Happy Creators</p></div>
-<div class="stat"><span class="counter" data-target="100">0</span><p>Brands Served</p></div>
-<div class="stat"><span class="counter" data-target="1000000">0</span><p>Reach Delivered</p></div>
-<div class="stat"><span class="counter" data-target="99">0</span><p>% Success Rate</p></div>
-</div>
-</section>
-
-<section id="faq">
-<h2>FAQ</h2>
-<details>
-<summary>Do you offer refunds?</summary>
-<p>Yes ✅ We offer a 101% refund if work is not completed within the committed timeframe.</p>
-</details>
-<details>
-<summary>Is the engagement real?</summary>
-<p>Absolutely. We prioritize high-quality, non-drop engagement for long-term growth.</p>
-</details>
-<details>
-<summary>How fast is delivery?</summary>
-<p>Most orders start instantly and are completed within 24–72 hours depending on volume.</p>
-</details>
-</section>
-
-<section id="project">
-<h2>Digital Solutions</h2>
-<div class="project-boxes">
-<div class="project-card">
-<h3>Web Development</h3>
-<ul>
-<li>Custom Website Design</li>
-<li>Domain & Subdomain Setup</li>
-<li>Responsive Layouts</li>
-</ul>
-<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">Contact Dev</a></div>
-</div>
-<div class="project-card">
-<h3>Content Studio</h3>
-<ul>
-<li>Vlog Script Writing</li>
-<li>SEO Blog Posts</li>
-<li>Creative Ad Copy</li>
-</ul>
-<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">Contact Team</a></div>
-</div>
-<div class="project-card">
-<h3>Telegram Bots</h3>
-<ul>
-<li>Auto-Reply Bots</li>
-<li>Shop/Store Bots</li>
-<li>Group Management</li>
-</ul>
-<div class="dm-box"><a href="https://t.me/Krishnraj_3103" target="_blank">Contact Dev</a></div>
-</div>
-</div>
+<section>
+    <h2>Niches We Cover</h2>
+    <div class="niche-grid">
+        <div class="glass-card"><i class="fas fa-tshirt" style="color:var(--gold); font-size:1.5rem;"></i><br>Fashion</div>
+        <div class="glass-card"><i class="fas fa-gamepad" style="color:var(--gold); font-size:1.5rem;"></i><br>Gaming</div>
+        <div class="glass-card"><i class="fas fa-plane" style="color:var(--gold); font-size:1.5rem;"></i><br>Travel</div>
+        <div class="glass-card"><i class="fas fa-mobile-alt" style="color:var(--gold); font-size:1.5rem;"></i><br>Tech</div>
+        <div class="glass-card"><i class="fas fa-utensils" style="color:var(--gold); font-size:1.5rem;"></i><br>Food</div>
+        <div class="glass-card"><i class="fas fa-dumbbell" style="color:var(--gold); font-size:1.5rem;"></i><br>Fitness</div>
+    </div>
 </section>
 
 <section id="services">
-<h2>Premium Services</h2>
-<div class="services">
-<div class="service-card">
-<h3>Instagram Growth</h3>
-<ul>
-<li>1,000 Views – ₹80</li>
-<li>1,000 Followers – ₹200</li>
-<li>1,000 Likes – ₹70</li>
-<li>1,000 Story Views – ₹60</li>
-<li>Reel Viral Boost</li>
-</ul>
-<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">Order Now</a></div>
-</div>
-<div class="service-card">
-<h3>YouTube Growth</h3>
-<ul>
-<li>1,000 Views – ₹150</li>
-<li>1,000 Likes – ₹140</li>
-<li>1,000 Subscribers – ₹2,580</li>
-<li>Monetization Pack</li>
-</ul>
-<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">Order Now</a></div>
-</div>
-<div class="service-card">
-<h3>Telegram Power</h3>
-<ul>
-<li>1,000 Members – ₹200</li>
-<li>10,000 Post Views – ₹100</li>
-<li>Auto Reactions Setup</li>
-</ul>
-<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">Order Now</a></div>
-</div>
-<div class="service-card">
-<h3>Facebook & X</h3>
-<ul>
-<li>FB Reels Views – ₹100/k</li>
-<li>Page Followers – ₹100/k</li>
-<li>Twitter Likes – ₹220/k</li>
-</ul>
-<div class="dm-box"><a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank">Order Now</a></div>
-</div>
-</div>
-</section>
-
-<section id="contact-final" style="text-align: center; background: linear-gradient(to top, #000, #111); padding: 60px 20px;">
-    <h2 style="margin-bottom: 20px;">Get in Touch</h2>
-    <p style="color: #ccc; margin-bottom: 30px; font-size: 1.1rem;">Ready to skyrocket your growth? Contact us directly.</p>
-    
-    <a href="mailto:business_shreekrishnaagency@zohomail.in" class="btn btn-primary" style="display: inline-block; padding: 15px 40px; font-size: 1.2rem;">
-        Contact Us Now
-    </a>
-    
-    <div style="margin-top: 25px; font-size: 1rem; color: #fff;">
-        Official Mail: 
-        <a href="mailto:business_shreekrishnaagency@zohomail.in" style="color: var(--gold); text-decoration: none; font-weight: bold;">
-            business_shreekrishnaagency@zohomail.in
-        </a>
+    <h2>Digital Solutions</h2>
+    <div class="grid-3">
+        <div class="glass-card">
+            <i class="fas fa-bullhorn" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
+            <h3>Marketing Campaigns</h3>
+            <p style="color:#aaa; margin-bottom:15px;">Full-scale execution for brands.</p>
+            <a href="https://t.me/shreekrishnaIMA" style="color:var(--gold);">Learn More</a>
+        </div>
+        <div class="glass-card">
+            <i class="fas fa-code" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
+            <h3>Web Development</h3>
+            <p style="color:#aaa; margin-bottom:15px;">Custom websites for creators & agencies.</p>
+            <a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a>
+        </div>
+        <div class="glass-card">
+            <i class="fas fa-robot" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
+            <h3>Telegram Bots</h3>
+            <p style="color:#aaa; margin-bottom:15px;">Shop bots, Group management & more.</p>
+            <a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a>
+        </div>
     </div>
 </section>
+
+<section id="stats">
+    <h2>Agency Impact</h2>
+    <div class="grid-4">
+        <div class="stat-card"><span class="counter" data-target="500">0</span><p>Creators</p></div>
+        <div class="stat-card"><span class="counter" data-target="100">0</span><p>Brands</p></div>
+        <div class="stat-card"><span class="counter" data-target="1000">0</span><p>Campaigns</p></div>
+        <div class="stat-card"><span class="counter" data-target="24">0</span><p>Hours Support</p></div>
+    </div>
+</section>
+
+<section id="testimonials">
+    <h2>What They Say</h2>
+    <div class="grid-3">
+        <div class="testimonial-card">
+            <p>"Got my first sponsorship within a week of joining!"</p>
+            <h4 style="color:var(--gold); margin-top:10px;">- Rahul K. (Creator)</h4>
+        </div>
+        <div class="testimonial-card">
+            <p>"Professional team and real organic growth. Highly recommended."</p>
+            <h4 style="color:var(--gold); margin-top:10px;">- TechWorld (Brand)</h4>
+        </div>
+        <div class="testimonial-card">
+            <p>"Best agency for Telegram automation and web support."</p>
+            <h4 style="color:var(--gold); margin-top:10px;">- Aman S. (Admin)</h4>
+        </div>
+    </div>
+</section>
+
+<section id="join-us">
+    <h2>Start Collaborating</h2>
+    <div class="split-container">
+        <div class="split-card">
+            <i class="fas fa-user-astronaut" style="font-size:3rem; color:#fff; margin-bottom:20px;"></i>
+            <h3>I am a Creator</h3>
+            <p style="color:#aaa;">Get sponsorships & grow.</p>
+            <a href="mailto:business_shreekrishnaagency@zohomail.in" class="btn btn-secondary">Join as Creator</a>
+        </div>
+        <div class="split-card">
+            <i class="fas fa-briefcase" style="font-size:3rem; color:var(--gold); margin-bottom:20px;"></i>
+            <h3 style="color:var(--gold);">I am a Brand</h3>
+            <p style="color:#aaa;">Hire verified talent.</p>
+            <a href="mailto:business_shreekrishnaagency@zohomail.in" class="btn btn-primary">Hire Influencers</a>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2>FAQ</h2>
+    <details>
+        <summary>Do you charge creators for joining?</summary>
+        <p>No, joining our roster is completely free.</p>
+    </details>
+    <details>
+        <summary>How do I get paid?</summary>
+        <p>We offer instant payments via UPI/Bank Transfer after campaign completion.</p>
+    </details>
+    <details>
+        <summary>Is the growth organic?</summary>
+        <p>Yes, we focus purely on organic strategies and real engagement.</p>
+    </details>
+</section>
+
+<section id="contact" style="text-align:center;">
+    <h2>Get in Touch</h2>
+    <div class="grid-3">
+        <div class="glass-card">
+            <i class="fab fa-telegram" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
+            <br>
+            <a href="https://t.me/shreekrishnaIMA" style="color:#fff; text-decoration:none; font-weight:600;">Telegram</a>
+        </div>
+        <div class="glass-card">
+            <i class="fab fa-instagram" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
+            <br>
+            <a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" style="color:#fff; text-decoration:none; font-weight:600;">Instagram</a>
+        </div>
+        <div class="glass-card">
+            <i class="fas fa-envelope" style="font-size:3rem; color:var(--gold); margin-bottom:10px;"></i>
+            <br>
+            <a href="mailto:business_shreekrishnaagency@zohomail.in" style="color:#fff; text-decoration:none; font-weight:600;">Email</a>
+        </div>
+    </div>
+</section>
+
 <footer>
-<p>&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
-<div>
-<a href="https://www.instagram.com/shree.krishna.agency?igsh=MW1vdm40cTRtbmVoZw==" target="_blank"><i class="fab fa-instagram"></i></a>
-<a href="https://t.me/shreekrishnaIMA" target="_blank"><i class="fab fa-telegram"></i></a>
-<a href="mailto:business_shreekrishnaagency@zohomail.in"><i class="fas fa-envelope"></i></a>
-</div>
+    <p>&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
 </footer>
 
-<a href="join.html" id="sticky-cta">Join Now</a>
+<a href="#join-us" id="sticky-cta">Join Now</a>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-// Hamburger Logic
-const menu=document.querySelector('nav ul');
-function toggleMenu(){menu.classList.toggle('active');}
-
-// Animated Counters
-const counters=document.querySelectorAll('.counter');
-let started=false;
-window.addEventListener('scroll',()=>{
-  if(started) return;
-  const statsSection=document.getElementById('stats');
-  if(!statsSection) return;
-  const statsTop=statsSection.getBoundingClientRect().top;
-  
-  if(statsTop < window.innerHeight - 100){
-    counters.forEach(c=>{
-      const target=+c.dataset.target;
-      let count=0;
-      const inc=target/100; // Faster animation
-      const run=setInterval(()=>{
-        count+=inc;
-        if(count>=target){c.innerText=target;clearInterval(run);}
-        else{c.innerText=Math.ceil(count);}
-      },20);
+    // 1. CURTAIN LOGIC
+    window.addEventListener('load', () => {
+        const curtain = document.getElementById('theater-curtain');
+        setTimeout(() => { curtain.classList.add('curtain-open'); }, 1000);
+        setTimeout(() => { curtain.style.display = 'none'; }, 3500);
     });
-    started=true;
-  }
-});
+
+    // 2. HAMBURGER AUTO CLOSE
+    const menu = document.querySelector('nav ul');
+    const hamburger = document.querySelector('.hamburger');
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+    function toggleMenu() {
+        menu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    }
+
+    // 3. ANIMATED COUNTERS
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+    window.addEventListener('scroll', () => {
+        if(started) return;
+        const stats = document.getElementById('stats');
+        if(stats && stats.getBoundingClientRect().top < window.innerHeight) {
+            counters.forEach(c => {
+                const target = +c.getAttribute('data-target');
+                let count = 0;
+                const inc = target / 50;
+                const update = () => {
+                    count += inc;
+                    if(count < target) { c.innerText = Math.ceil(count); requestAnimationFrame(update); }
+                    else { c.innerText = target; }
+                };
+                update();
+            });
+            started = true;
+        }
+    });
+
+    // 4. PARTICLES
+    particlesJS("particles-js", {
+        "particles": { "number": { "value": 40 }, "color": { "value": "#FFD700" }, "size": { "value": 3 }, "line_linked": { "color": "#FFD700", "opacity": 0.2 } }
+    });
 </script>
 
 </body>
 </html>
-
