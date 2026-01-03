@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Join Us - Shree Krishna Agency</title>
+<title>Join Team - Shree Krishna Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* --- GLOBAL GOLD THEME --- */
+/* --- GOLD & BLACK THEME --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
 
 :root {
@@ -26,7 +26,7 @@ body {
 
 #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
-/* --- GLASS CONTAINER --- */
+/* --- CONTAINER --- */
 .container {
     width: 90%; max-width: 450px;
     background: rgba(10, 10, 10, 0.85);
@@ -35,7 +35,7 @@ body {
     padding: 40px 30px;
     box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
     animation: slideUp 0.8s ease-out;
-    margin-top: 20px; margin-bottom: 20px;
+    margin: 30px 0;
 }
 
 @keyframes slideUp {
@@ -66,7 +66,7 @@ body {
 }
 .input-field:focus { border-color: var(--gold); background: rgba(0,0,0,0.6); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
 
-/* Custom Select Style */
+/* Select Dropdown */
 select.input-field { appearance: none; cursor: pointer; color: #fff; }
 select.input-field option { background: #000; color: #fff; }
 
@@ -85,6 +85,9 @@ select.input-field option { background: #000; color: #fff; }
     color: #888; text-decoration: none; font-size: 0.9rem; transition: 0.3s;
 }
 .back-link:hover { color: var(--gold); }
+
+/* Hide sections initially */
+#creator-fields, #brand-fields { display: none; }
 </style>
 </head>
 <body>
@@ -95,40 +98,63 @@ select.input-field option { background: #000; color: #fff; }
     <div class="form-header">
         <img src="Logo.png" alt="Logo" class="form-logo">
         <h2>Join Our Network</h2>
-        <p>Connect directly with Shree Krishna Team.</p>
+        <p>Select your role to proceed.</p>
     </div>
 
     <form id="universal-form">
         
         <div class="input-group">
             <i class="fas fa-user-tag"></i>
-            <select id="user-role" class="input-field" onchange="updateFormFields()" required>
+            <select id="user-role" class="input-field" onchange="toggleFormFields()" required>
+                <option value="" disabled selected>Select Role (Creator / Brand)</option>
                 <option value="Creator">I am a Creator</option>
                 <option value="Brand">I am a Brand</option>
             </select>
         </div>
 
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" id="name" class="input-field" placeholder="Full Name" required>
+        <div id="creator-fields">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="c-name" class="input-field" placeholder="Creator Name">
+            </div>
+            <div class="input-group">
+                <i class="fab fa-whatsapp"></i>
+                <input type="tel" id="c-phone" class="input-field" placeholder="WhatsApp Number">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-link"></i>
+                <input type="text" id="c-link" class="input-field" placeholder="Page/Channel Link">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-users"></i>
+                <input type="text" id="c-followers" class="input-field" placeholder="Total Followers">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-money-bill-wave"></i>
+                <input type="text" id="c-fees" class="input-field" placeholder="Fees (Promo Price)">
+            </div>
         </div>
 
-        <div class="input-group">
-            <i class="fas fa-link"></i>
-            <input type="text" id="link" class="input-field" placeholder="Instagram/Channel Link" required>
+        <div id="brand-fields">
+            <div class="input-group">
+                <i class="fas fa-building"></i>
+                <input type="text" id="b-name" class="input-field" placeholder="Brand Name">
+            </div>
+            <div class="input-group">
+                <i class="fab fa-whatsapp"></i>
+                <input type="tel" id="b-phone" class="input-field" placeholder="WhatsApp Number">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-bullseye"></i>
+                <input type="text" id="b-required" class="input-field" placeholder="Required Followers (Target)">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-wallet"></i>
+                <input type="text" id="b-budget" class="input-field" placeholder="Paid Collab Budget">
+            </div>
         </div>
 
-        <div class="input-group">
-            <i class="fas fa-chart-line" id="dynamic-icon"></i>
-            <input type="text" id="dynamic-field" class="input-field" placeholder="Total Followers" required>
-        </div>
-
-        <div class="input-group">
-            <i class="fab fa-whatsapp"></i>
-            <input type="tel" id="phone" class="input-field" placeholder="WhatsApp Number" required>
-        </div>
-
-        <button type="submit" id="submit-btn" class="submit-btn">Submit Application 🚀</button>
+        <button type="submit" id="submit-btn" class="submit-btn" style="display:none;">Submit Application 🚀</button>
     </form>
 
     <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
@@ -136,62 +162,83 @@ select.input-field option { background: #000; color: #fff; }
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-    // 🔥 DATA SETTINGS (Ab ye 100% Sahi hai) 🔥
-    
+    // 🔥 CONFIGURATION (Updated with your IDs) 🔥
     const BOT_TOKEN = "8506639525:AAGLH2uV4A7BXfyYzBBldXIHWSeIAcBZtG0"; 
     
     // Creator Channel ID
-    const CREATOR_CHANNEL_ID = "-1003679730145"; 
+    const CREATOR_CHANNEL_ID = "-1003501885141"; 
     
-    // Brand Channel ID (Filhal same rakha hai, jab naya banao toh yahan ID change kar dena)
+    // Brand Channel ID
     const BRAND_CHANNEL_ID = "-1003679730145"; 
 
 
-    // --- LOGIC ---
+    // --- PARTICLES ---
     particlesJS("particles-js", { "particles": { "number": { "value": 30 }, "color": { "value": "#FFD700" }, "line_linked": { "color": "#FFD700", "opacity": 0.1 } } });
 
-    // Function to change Placeholder based on Role
-    function updateFormFields() {
+    // --- FORM TOGGLE LOGIC ---
+    function toggleFormFields() {
         const role = document.getElementById('user-role').value;
-        const dynamicInput = document.getElementById('dynamic-field');
-        const dynamicIcon = document.getElementById('dynamic-icon');
+        const creatorFields = document.getElementById('creator-fields');
+        const brandFields = document.getElementById('brand-fields');
+        const submitBtn = document.getElementById('submit-btn');
 
-        if (role === 'Brand') {
-            dynamicInput.placeholder = "Your Budget (e.g. ₹50k)";
-            dynamicIcon.className = "fas fa-wallet";
-        } else {
-            dynamicInput.placeholder = "Total Followers (e.g. 10k)";
-            dynamicIcon.className = "fas fa-chart-line";
+        if (role === 'Creator') {
+            creatorFields.style.display = 'block';
+            brandFields.style.display = 'none';
+            setRequired(true, false);
+        } else if (role === 'Brand') {
+            creatorFields.style.display = 'none';
+            brandFields.style.display = 'block';
+            setRequired(false, true);
         }
+        submitBtn.style.display = 'block';
     }
 
-    // Handle Form Submission
+    function setRequired(isCreator, isBrand) {
+        document.getElementById('c-name').required = isCreator;
+        document.getElementById('c-phone').required = isCreator;
+        document.getElementById('c-link').required = isCreator;
+        document.getElementById('c-followers').required = isCreator;
+        document.getElementById('c-fees').required = isCreator;
+
+        document.getElementById('b-name').required = isBrand;
+        document.getElementById('b-phone').required = isBrand;
+        document.getElementById('b-required').required = isBrand;
+        document.getElementById('b-budget').required = isBrand;
+    }
+
+    // --- SUBMISSION LOGIC ---
     document.getElementById('universal-form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const role = document.getElementById('user-role').value;
-        const name = document.getElementById('name').value;
-        const link = document.getElementById('link').value;
-        const dynamicData = document.getElementById('dynamic-field').value; // Followers or Budget
-        const phone = document.getElementById('phone').value;
-        
         const btn = document.getElementById('submit-btn');
         const originalText = btn.innerText;
         btn.innerText = "⏳ Sending...";
         btn.disabled = true;
 
-        // Choose Channel based on Role
-        let targetChannelID = (role === 'Brand') ? BRAND_CHANNEL_ID : CREATOR_CHANNEL_ID;
+        let msg = "";
+        let targetChannelID = "";
 
-        // Create Message
-        let msg = `*🆕 New ${role} Application*\n\n` +
-                  `👤 *Name:* ${name}\n` +
-                  `🔗 *Link:* ${link}\n` +
-                  `📊 *${role === 'Brand' ? 'Budget' : 'Followers'}:* ${dynamicData}\n` +
-                  `📞 *Phone:* ${phone}\n\n` +
+        if (role === 'Creator') {
+            targetChannelID = CREATOR_CHANNEL_ID;
+            msg = `*🚀 New Creator Application*\n\n` +
+                  `👤 *Name:* ${document.getElementById('c-name').value}\n` +
+                  `📞 *Phone:* ${document.getElementById('c-phone').value}\n` +
+                  `🔗 *Link:* ${document.getElementById('c-link').value}\n` +
+                  `👥 *Followers:* ${document.getElementById('c-followers').value}\n` +
+                  `💰 *Fees:* ${document.getElementById('c-fees').value}\n\n` +
                   `_Source: Website_`;
+        } else {
+            targetChannelID = BRAND_CHANNEL_ID;
+            msg = `*💼 New Brand Inquiry*\n\n` +
+                  `🏢 *Name:* ${document.getElementById('b-name').value}\n` +
+                  `📞 *Phone:* ${document.getElementById('b-phone').value}\n` +
+                  `🎯 *Required Followers:* ${document.getElementById('b-required').value}\n` +
+                  `💰 *Budget:* ${document.getElementById('b-budget').value}\n\n` +
+                  `_Source: Website_`;
+        }
 
-        // Send to Telegram
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
         const params = {
             chat_id: targetChannelID,
@@ -207,7 +254,7 @@ select.input-field option { background: #000; color: #fff; }
             });
 
             if (response.ok) {
-                alert(`✅ Success! Your ${role} application sent.`);
+                alert(`✅ Application Sent Successfully!`);
                 btn.innerText = "Sent ✅";
                 setTimeout(() => { window.location.href = "index.html"; }, 1000);
             } else {
