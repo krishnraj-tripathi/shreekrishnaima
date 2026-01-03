@@ -35,6 +35,7 @@ body {
     padding: 40px 30px;
     box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
     animation: slideUp 0.8s ease-out;
+    margin-top: 20px; margin-bottom: 20px;
 }
 
 @keyframes slideUp {
@@ -135,14 +136,15 @@ select.input-field option { background: #000; color: #fff; }
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-    // 🔥 SETTINGS: APNA DATA YAHAN BHAREIN 🔥
-    const BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; 
+    // 🔥 DATA SETTINGS (Ab ye 100% Sahi hai) 🔥
     
-    // Purana Channel (Creators ke liye)
+    const BOT_TOKEN = "8506639525:AAGLH2uV4A7BXfyYzBBldXIHWSeIAcBZtG0"; 
+    
+    // Creator Channel ID
     const CREATOR_CHANNEL_ID = "-1003679730145"; 
     
-    // Naya Channel (Brands ke liye)
-    const BRAND_CHANNEL_ID = "YOUR_BRAND_CHANNEL_ID"; 
+    // Brand Channel ID (Filhal same rakha hai, jab naya banao toh yahan ID change kar dena)
+    const BRAND_CHANNEL_ID = "-1003679730145"; 
 
 
     // --- LOGIC ---
@@ -209,7 +211,7 @@ select.input-field option { background: #000; color: #fff; }
                 btn.innerText = "Sent ✅";
                 setTimeout(() => { window.location.href = "index.html"; }, 1000);
             } else {
-                alert("❌ Error! Check Bot Token or Channel ID.");
+                alert("❌ Error! Bot Admin nahi hai ya ID galat hai.");
                 btn.innerText = originalText;
             }
         } catch (error) {
