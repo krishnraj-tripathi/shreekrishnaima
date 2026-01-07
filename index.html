@@ -8,8 +8,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* --- 1. GLOBAL SETTINGS --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+/* --- 1. GLOBAL SETTINGS & GOLDEN CURSOR --- */
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+    -webkit-tap-highlight-color: transparent;
+    /* 🔥 CUSTOM GOLDEN ARROW CURSOR 🔥 */
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgZD0iTTcgMmwxMiAxMS4yNS01LjI1IDEuNSA0LjUgNy41LTIuMjUgMS41LTQuNS03LjUtNC41IDQuNXoiLz48L3N2Zz4='), auto !important;
+}
+
+/* Ensure clickable items also show the golden cursor (instead of default hand) */
+a, button, select, summary, .logo, .submit-btn, .back-link, #sticky-cta {
+     cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgZD0iTTcgMmwxMiAxMS4yNS01LjI1IDEuNSA0LjUgNy41LTIuMjUgMS41LTQuNS03LjUtNC41IDQuNXoiLz48L3N2Zz4='), pointer !important;
+}
 
 :root {
   --gold: #FFD700;
@@ -26,167 +37,101 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* --- PRELOADER --- */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000; z-index: 99999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+.loader-logo {
+    width: 100px; height: 100px; border-radius: 50%;
+    border: 3px solid var(--gold); padding: 5px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    animation: pulseGold 2s infinite;
+}
+.loader-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+@keyframes pulseGold {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 20px 20px rgba(255, 215, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+.hidden { opacity: 0; visibility: hidden; }
+
 /* --- VIEW ANIMATIONS --- */
 #home-view { display: block; animation: fadeIn 0.5s; }
-#form-view { 
-    display: none; 
-    animation: slideUp 0.5s; 
-    min-height: 100vh;
-    padding-top: 100px;
-    padding-bottom: 50px;
-}
-
+#form-view { display: none; animation: slideUp 0.5s; min-height: 100vh; padding-top: 120px; padding-bottom: 50px; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- 2. HEADER & NAV --- */
+/* --- HEADER --- */
 header {
   position: fixed; width: 100%; top: 0; z-index: 1000;
   background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 215, 0, 0.1); padding-top: env(safe-area-inset-top);
 }
-
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: auto; }
-
-.logo img { 
-    width: 55px; height: 55px; 
-    border-radius: 50%; aspect-ratio: 1 / 1; object-fit: cover;
-    border: 2px solid var(--gold); 
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    cursor: pointer;
-}
-
+.logo img { width: 55px; height: 55px; border-radius: 50%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
 nav ul { display: flex; gap: 30px; list-style: none; }
-nav a { color: #fff; text-decoration: none; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+nav a { color: #fff; text-decoration: none; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
 nav a:hover { color: var(--gold); }
 
-/* --- 3. HERO SECTION --- */
-.hero {
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 100px 15px 40px; overflow: hidden;
-}
-
+/* --- HERO --- */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 15px 40px; overflow: hidden; }
 .hero-content { opacity: 0; animation: slowZoom 2.5s ease-out forwards; animation-delay: 0.5s; width: 100%; }
 @keyframes slowZoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-
-.hero h1 {
-  font-weight: 800; line-height: 1.2; margin-bottom: 20px;
-  background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
-/* SMART FONTS */
+.hero h1 { font-weight: 800; line-height: 1.2; margin-bottom: 20px; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .main-title { font-size: 4rem; display: block; }
 .sub-title { font-size: 3rem; display: block; }
-
-.hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.typewrite { color: var(--gold); font-weight: 700; text-decoration: none; }
+.wrap { border-right: 0.08em solid #fff; animation: blink 0.7s infinite; }
+@keyframes blink { 50% { border-color: transparent; } }
 
 /* Buttons */
-.btn { padding: 14px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; display: inline-block; margin: 5px; cursor: pointer; border: none; font-size: 1rem; }
+.btn { padding: 14px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; display: inline-block; margin: 5px; border: none; font-size: 1rem; }
 .btn-primary { background: var(--gold-grad); color: #000; box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3); }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
 .btn-secondary { border: 2px solid var(--gold); color: var(--gold); background: transparent; }
 .btn-secondary:hover { background: var(--gold); color: #000; }
 
-/* --- 4. SECTIONS & CARDS --- */
+/* --- SECTIONS --- */
 section { padding: 80px 20px; max-width: 1200px; margin: auto; }
 h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--gold); text-transform: uppercase; }
-
-.glass-card {
-    background: var(--glass-bg); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
-    padding: 30px; text-align: center; transition: 0.3s; margin-bottom: 20px;
-}
+.glass-card { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; text-align: center; transition: 0.3s; margin-bottom: 20px; }
 .glass-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .niche-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-
-/* Stats Card */
 .stat-card { background: var(--glass-bg); border-radius: 20px; padding: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
 .stat-card span { font-size: 3rem; color: var(--gold); font-weight: 800; display: block; }
 
-/* --- FIX: How We Work Centering --- */
-.process-container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; /* Ensures content is centered */
-    gap: 30px; 
-    max-width: 1000px; /* Limits width so items stay in middle */
-    margin: auto;
-}
-.process-step { 
-    flex: 1; 
-    min-width: 250px; 
-    max-width: 350px; /* Prevents stretching too much */
-    background: var(--glass-bg); 
-    padding: 30px; 
-    border-radius: 20px; 
-    text-align: center; 
-    border: 1px solid rgba(255,255,255,0.1); 
-    transition: 0.3s; 
-}
+.process-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: auto; }
+.process-step { flex: 1; min-width: 250px; max-width: 350px; background: var(--glass-bg); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
 .step-num { width: 60px; height: 60px; background: var(--gold); color: #000; border-radius: 50%; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
 
-/* Dual Join Section */
 .split-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-.split-card { 
-    flex: 1; min-width: 300px; padding: 40px 30px; 
-    border-radius: 20px; text-align: center; 
-    border: 1px solid var(--gold);
-    background: rgba(255, 215, 0, 0.05);
-    transition: 0.3s;
-}
+.split-card { flex: 1; min-width: 300px; padding: 40px 30px; border-radius: 20px; text-align: center; border: 1px solid var(--gold); background: rgba(255, 215, 0, 0.05); transition: 0.3s; }
 .split-card:hover { background: rgba(255, 215, 0, 0.1); transform: translateY(-5px); }
 
-/* --- 5. FORM STYLES --- */
-.form-container-box {
-    width: 90%; max-width: 450px; margin: 0 auto;
-    background: rgba(10, 10, 10, 0.95);
-    border: 1px solid var(--gold); border-radius: 20px;
-    padding: 40px 30px;
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
-}
-
+/* --- FORM --- */
+.form-container-box { width: 90%; max-width: 450px; margin: 0 auto; background: rgba(10, 10, 10, 0.95); border: 1px solid var(--gold); border-radius: 20px; padding: 40px 30px; box-shadow: 0 0 50px rgba(255, 215, 0, 0.15); }
 .form-header { text-align: center; margin-bottom: 25px; }
-.form-logo { 
-    width: 80px; height: 80px; border-radius: 50%; 
-    border: 2px solid var(--gold); object-fit: cover; 
-    margin-bottom: 15px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-}
+.form-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
 .form-header h2 { font-size: 1.8rem; color: #fff; margin-bottom: 5px; }
 .form-header p { color: #aaa; font-size: 0.9rem; }
-
 .input-group { margin-bottom: 15px; position: relative; }
 .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.1rem; z-index: 2; }
-
-.input-field {
-    width: 100%; padding: 15px 15px 15px 45px;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
-}
+.input-field { width: 100%; padding: 15px 15px 15px 45px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s; }
 .input-field:focus { border-color: var(--gold); background: rgba(0,0,0,0.6); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
-select.input-field { appearance: none; cursor: pointer; color: #fff; background: #000; }
-
-.submit-btn {
-    width: 100%; padding: 15px; border-radius: 50px; border: none; margin-top: 10px;
-    background: var(--gold-grad); color: #000; font-size: 1.1rem;
-    font-weight: 800; cursor: pointer; transition: 0.3s;
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-}
+select.input-field { appearance: none; color: #fff; background: #000; }
+.submit-btn { width: 100%; padding: 15px; border-radius: 50px; border: none; margin-top: 10px; background: var(--gold-grad); color: #000; font-size: 1.1rem; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3); }
 .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
-
-.back-link {
-    display: block; text-align: center; margin-top: 20px;
-    color: #888; text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer;
-}
+.back-link { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
 .back-link:hover { color: var(--gold); }
 
 /* Marquee */
-.marquee-container {
-    background: var(--gold); color: #000; padding: 12px 0; overflow: hidden; white-space: nowrap;
-    transform: rotate(-1.5deg); margin: 20px 0 60px; border-top: 2px solid #fff; border-bottom: 2px solid #fff;
-}
+.marquee-container { background: var(--gold); color: #000; padding: 12px 0; overflow: hidden; white-space: nowrap; transform: rotate(-1.5deg); margin: 20px 0 60px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; }
 .marquee-track { display: inline-block; animation: scroll 20s linear infinite; }
 .marquee-track span { font-weight: 800; text-transform: uppercase; margin: 0 30px; font-size: 1.1rem; }
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -203,25 +148,22 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
 .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
 /* Sticky CTA */
-#sticky-cta {
-    position: fixed; bottom: 30px; right: 25px; background: var(--gold-grad); color: #000;
-    padding: 12px 25px; border-radius: 50px; font-weight: 800; text-decoration: none;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); z-index: 998; text-transform: uppercase;
-    cursor: pointer;
-}
+#sticky-cta { position: fixed; bottom: 30px; right: 25px; background: var(--gold-grad); color: #000; padding: 12px 25px; border-radius: 50px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); z-index: 998; text-transform: uppercase; cursor: pointer; }
 
 @media(max-width: 768px) {
     nav ul { display: none; position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); flex-direction: column; justify-content: center; align-items: center; z-index: 999; }
     nav ul.active { display: flex; }
     .hamburger { display: flex; z-index: 1001; }
-    
-    /* Mobile Font Fix */
     .main-title { font-size: 2.2rem; }
     .sub-title { font-size: 1.25rem; white-space: nowrap; margin-top: 5px; }
 }
 </style>
 </head>
 <body>
+
+<div id="preloader">
+    <div class="loader-logo"><img src="Logo.png" alt="Loading"></div>
+</div>
 
 <div id="particles-js" style="position:fixed; width:100%; height:100%; z-index:-1;"></div>
 
@@ -248,7 +190,7 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
                 <span class="main-title">Shree Krishna</span>
                 <span class="sub-title">Influencer Marketing Agency</span>
             </h1>
-            <p>Bridging the gap between Premium Brands and Viral Creators.</p>
+            <p>Bridging the gap between <span class="typewrite" data-period="2000" data-type='[ "Premium Brands.", "Viral Creators.", "Massive Growth." ]'><span class="wrap"></span></span></p>
             <div class="hero-buttons">
                 <button onclick="showForm()" class="btn btn-primary">Join Now</button>
                 <a href="#services" class="btn btn-secondary">Our Solutions</a>
@@ -270,54 +212,37 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
     <section id="about">
         <h2>Who We Are</h2>
         <div class="glass-card" style="max-width: 800px; margin: auto;">
-            <p style="color: #ccc; line-height: 1.8;">
-                <strong>Shree Krishna IMA</strong> is not just an agency; it's an ecosystem. We identify high-potential creators and match them with brands that need authentic reach. We also provide technical infrastructure like Websites and Bots to automate your business.
-            </p>
+            <p style="color: #ccc; line-height: 1.8;"><strong>Shree Krishna IMA</strong> is not just an agency; it's an ecosystem. We identify high-potential creators and match them with brands that need authentic reach.</p>
         </div>
     </section>
 
     <section id="process">
         <h2>How We Work</h2>
         <div class="process-container">
-            <div class="process-step">
-                <div class="step-num">1</div>
-                <h3>Connect</h3>
-                <p style="color:#aaa;">Creators join our roster.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-num">2</div>
-                <h3>Match</h3>
-                <p style="color:#aaa;">We find the perfect fit.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-num">3</div>
-                <h3>Execute</h3>
-                <p style="color:#aaa;">Content is posted & Paid.</p>
-            </div>
+            <div class="process-step"><div class="step-num">1</div><h3>Connect</h3><p style="color:#aaa;">Creators join our roster.</p></div>
+            <div class="process-step"><div class="step-num">2</div><h3>Match</h3><p style="color:#aaa;">We find the perfect fit.</p></div>
+            <div class="process-step"><div class="step-num">3</div><h3>Execute</h3><p style="color:#aaa;">Content is posted & Paid.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Niches We Cover</h2>
+        <div class="niche-grid">
+            <div class="glass-card"><i class="fas fa-tshirt" style="color:var(--gold); font-size:1.5rem;"></i><br>Fashion</div>
+            <div class="glass-card"><i class="fas fa-gamepad" style="color:var(--gold); font-size:1.5rem;"></i><br>Gaming</div>
+            <div class="glass-card"><i class="fas fa-plane" style="color:var(--gold); font-size:1.5rem;"></i><br>Travel</div>
+            <div class="glass-card"><i class="fas fa-mobile-alt" style="color:var(--gold); font-size:1.5rem;"></i><br>Tech</div>
+            <div class="glass-card"><i class="fas fa-utensils" style="color:var(--gold); font-size:1.5rem;"></i><br>Food</div>
+            <div class="glass-card"><i class="fas fa-dumbbell" style="color:var(--gold); font-size:1.5rem;"></i><br>Fitness</div>
         </div>
     </section>
 
     <section id="services">
         <h2>Digital Solutions</h2>
         <div class="grid-3">
-            <div class="glass-card">
-                <i class="fas fa-bullhorn" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
-                <h3>Marketing Campaigns</h3>
-                <p style="color:#aaa; margin-bottom:15px;">Full-scale execution for brands.</p>
-                <a href="https://t.me/shreekrishnaIMA" style="color:var(--gold);">Learn More</a>
-            </div>
-            <div class="glass-card">
-                <i class="fas fa-code" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
-                <h3>Web Development</h3>
-                <p style="color:#aaa; margin-bottom:15px;">Custom websites for creators & agencies.</p>
-                <a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a>
-            </div>
-            <div class="glass-card">
-                <i class="fas fa-robot" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i>
-                <h3>Telegram Bots</h3>
-                <p style="color:#aaa; margin-bottom:15px;">Shop bots, Group management & more.</p>
-                <a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a>
-            </div>
+            <div class="glass-card"><i class="fas fa-bullhorn" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i><h3>Marketing</h3><p style="color:#aaa; margin-bottom:15px;">Full-scale execution.</p><a href="https://t.me/shreekrishnaIMA" style="color:var(--gold);">Learn More</a></div>
+            <div class="glass-card"><i class="fas fa-code" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i><h3>Web Dev</h3><p style="color:#aaa; margin-bottom:15px;">Custom websites.</p><a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a></div>
+            <div class="glass-card"><i class="fas fa-robot" style="font-size:2.5rem; color:var(--gold); margin-bottom:15px;"></i><h3>Bots</h3><p style="color:#aaa; margin-bottom:15px;">Telegram automation.</p><a href="https://t.me/Krishnraj_3103" style="color:var(--gold);">Contact Dev</a></div>
         </div>
     </section>
 
@@ -334,18 +259,8 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
     <section id="join-us">
         <h2>Start Collaborating</h2>
         <div class="split-container">
-            <div class="split-card">
-                <i class="fas fa-user-astronaut" style="font-size:3rem; color:#fff; margin-bottom:20px;"></i>
-                <h3>I am a Creator</h3>
-                <p style="color:#aaa;">Get sponsorships & grow.</p>
-                <button type="button" onclick="showForm('Creator')" class="btn btn-secondary">Join as Creator</button>
-            </div>
-            <div class="split-card">
-                <i class="fas fa-briefcase" style="font-size:3rem; color:var(--gold); margin-bottom:20px;"></i>
-                <h3 style="color:var(--gold);">I am a Brand</h3>
-                <p style="color:#aaa;">Hire verified talent.</p>
-                <button type="button" onclick="showForm('Brand')" class="btn btn-primary">Hire Influencers</button>
-            </div>
+            <div class="split-card"><i class="fas fa-user-astronaut" style="font-size:3rem; color:#fff; margin-bottom:20px;"></i><h3>I am a Creator</h3><p style="color:#aaa;">Get sponsorships & grow.</p><button type="button" onclick="showForm('Creator')" class="btn btn-secondary">Join as Creator</button></div>
+            <div class="split-card"><i class="fas fa-briefcase" style="font-size:3rem; color:var(--gold); margin-bottom:20px;"></i><h3 style="color:var(--gold);">I am a Brand</h3><p style="color:#aaa;">Hire verified talent.</p><button type="button" onclick="showForm('Brand')" class="btn btn-primary">Hire Influencers</button></div>
         </div>
     </section>
 
@@ -372,7 +287,6 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
             <h2>Join Our Network</h2>
             <p>Select your role to proceed.</p>
         </div>
-
         <form id="universal-form">
             <div class="input-group">
                 <i class="fas fa-user-tag"></i>
@@ -381,7 +295,6 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
                     <option value="Brand">I am a Brand</option>
                 </select>
             </div>
-
             <div id="creator-fields">
                 <div class="input-group"><i class="fas fa-user"></i><input type="text" id="c-name" class="input-field" placeholder="Creator Name"></div>
                 <div class="input-group"><i class="fab fa-whatsapp"></i><input type="tel" id="c-phone" class="input-field" placeholder="WhatsApp Number"></div>
@@ -389,17 +302,14 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
                 <div class="input-group"><i class="fas fa-users"></i><input type="text" id="c-followers" class="input-field" placeholder="Total Followers"></div>
                 <div class="input-group"><i class="fas fa-money-bill-wave"></i><input type="text" id="c-fees" class="input-field" placeholder="Fees (Promo Price)"></div>
             </div>
-
             <div id="brand-fields" style="display:none;">
                 <div class="input-group"><i class="fas fa-building"></i><input type="text" id="b-name" class="input-field" placeholder="Brand Name"></div>
                 <div class="input-group"><i class="fab fa-whatsapp"></i><input type="tel" id="b-phone" class="input-field" placeholder="WhatsApp Number"></div>
                 <div class="input-group"><i class="fas fa-bullseye"></i><input type="text" id="b-required" class="input-field" placeholder="Target Followers"></div>
                 <div class="input-group"><i class="fas fa-wallet"></i><input type="text" id="b-budget" class="input-field" placeholder="Budget"></div>
             </div>
-
             <button type="submit" id="submit-btn" class="submit-btn">Submit Application 🚀</button>
         </form>
-
         <a onclick="showHome()" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
 </div>
@@ -411,110 +321,27 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
     const CREATOR_CHANNEL_ID = "-1003501885141"; 
     const BRAND_CHANNEL_ID = "-1003679730145"; 
 
-    // --- BUTTON FUNCTIONS (Defined at Top) ---
-    function showForm(preSelectRole) {
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('form-view').style.display = 'block';
-        window.scrollTo(0, 0); 
-        
-        if(preSelectRole) {
-            document.getElementById('user-role').value = preSelectRole;
-            toggleFormFields();
-        }
-    }
+    // --- TYPEWRITER ---
+    var TxtType = function(el, toRotate, period) { this.toRotate = toRotate; this.el = el; this.loopNum = 0; this.period = parseInt(period, 10) || 2000; this.txt = ''; this.tick(); this.isDeleting = false; };
+    TxtType.prototype.tick = function() { var i = this.loopNum % this.toRotate.length; var fullTxt = this.toRotate[i]; if (this.isDeleting) { this.txt = fullTxt.substring(0, this.txt.length - 1); } else { this.txt = fullTxt.substring(0, this.txt.length + 1); } this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>'; var that = this; var delta = 200 - Math.random() * 100; if (this.isDeleting) { delta /= 2; } if (!this.isDeleting && this.txt === fullTxt) { delta = this.period; this.isDeleting = true; } else if (this.isDeleting && this.txt === '') { this.isDeleting = false; this.loopNum++; delta = 500; } setTimeout(function() { that.tick(); }, delta); };
+    window.onload = function() { var elements = document.getElementsByClassName('typewrite'); for (var i = 0; i < elements.length; i++) { var toRotate = elements[i].getAttribute('data-type'); var period = elements[i].getAttribute('data-period'); if (toRotate) { new TxtType(elements[i], JSON.parse(toRotate), period); } } toggleFormFields(); };
 
-    function showHome() {
-        document.getElementById('form-view').style.display = 'none';
-        document.getElementById('home-view').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
+    // --- PRELOADER ---
+    window.addEventListener('load', () => { const preloader = document.getElementById('preloader'); setTimeout(() => { preloader.classList.add('hidden'); setTimeout(() => { preloader.style.display = 'none'; }, 800); }, 2200); });
 
-    // --- FORM LOGIC ---
-    function toggleFormFields() {
-        const role = document.getElementById('user-role').value;
-        const cFields = document.getElementById('creator-fields');
-        const bFields = document.getElementById('brand-fields');
+    // --- LOGIC ---
+    function showForm(preSelectRole) { document.getElementById('home-view').style.display = 'none'; document.getElementById('form-view').style.display = 'block'; window.scrollTo(0, 0); if(preSelectRole) { document.getElementById('user-role').value = preSelectRole; toggleFormFields(); } }
+    function showHome() { document.getElementById('form-view').style.display = 'none'; document.getElementById('home-view').style.display = 'block'; window.scrollTo(0, 0); }
+    function toggleFormFields() { const role = document.getElementById('user-role').value; const cFields = document.getElementById('creator-fields'); const bFields = document.getElementById('brand-fields'); if (role === 'Creator') { cFields.style.display = 'block'; bFields.style.display = 'none'; setRequired(true, false); } else { cFields.style.display = 'none'; bFields.style.display = 'block'; setRequired(false, true); } }
+    function setRequired(isC, isB) { document.getElementById('c-name').required = isC; document.getElementById('c-phone').required = isC; document.getElementById('b-name').required = isB; document.getElementById('b-phone').required = isB; }
+    
+    document.getElementById('universal-form').addEventListener('submit', async function(e) { e.preventDefault(); const role = document.getElementById('user-role').value; const btn = document.getElementById('submit-btn'); const originalTxt = btn.innerText; btn.innerText = "⏳ Sending..."; btn.disabled = true; let msg = "", targetID = ""; if (role === 'Creator') { targetID = CREATOR_CHANNEL_ID; msg = `*🚀 New Creator*\n👤: ${document.getElementById('c-name').value}\n📞: ${document.getElementById('c-phone').value}\n🔗: ${document.getElementById('c-link').value}\n💰: ${document.getElementById('c-fees').value}`; } else { targetID = BRAND_CHANNEL_ID; msg = `*💼 New Brand*\n🏢: ${document.getElementById('b-name').value}\n📞: ${document.getElementById('b-phone').value}\n💰: ${document.getElementById('b-budget').value}`; } try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: targetID, text: msg, parse_mode: "Markdown" }) }); alert("✅ Sent Successfully!"); showHome(); } catch (e) { alert("❌ Error! (Bot ID Check Karein)"); } btn.innerText = originalTxt; btn.disabled = false; });
 
-        if (role === 'Creator') {
-            cFields.style.display = 'block'; bFields.style.display = 'none'; setRequired(true, false);
-        } else {
-            cFields.style.display = 'none'; bFields.style.display = 'block'; setRequired(false, true);
-        }
-    }
+    // Menu & Stats
+    const menu = document.querySelector('nav ul'); const hamburger = document.querySelector('.hamburger'); function toggleMenu() { menu.classList.toggle('active'); hamburger.classList.toggle('active'); }
+    const counters = document.querySelectorAll('.counter'); const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { const c = entry.target; const target = +c.getAttribute('data-target'); let count = 0; const inc = target / 50; const update = () => { count += inc; if (count < target) { c.innerText = Math.ceil(count); requestAnimationFrame(update); } else { c.innerText = target; } }; update(); observer.unobserve(c); } }); }, { threshold: 0.5 }); counters.forEach(c => observer.observe(c));
 
-    function setRequired(isC, isB) {
-        document.getElementById('c-name').required = isC;
-        document.getElementById('c-phone').required = isC;
-        document.getElementById('b-name').required = isB;
-        document.getElementById('b-phone').required = isB;
-    }
-
-    document.getElementById('universal-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const role = document.getElementById('user-role').value;
-        const btn = document.getElementById('submit-btn');
-        const originalTxt = btn.innerText;
-        btn.innerText = "⏳ Sending..."; btn.disabled = true;
-
-        let msg = "", targetID = "";
-        if (role === 'Creator') {
-            targetID = CREATOR_CHANNEL_ID;
-            msg = `*🚀 New Creator*\n👤: ${document.getElementById('c-name').value}\n📞: ${document.getElementById('c-phone').value}\n🔗: ${document.getElementById('c-link').value}\n💰: ${document.getElementById('c-fees').value}`;
-        } else {
-            targetID = BRAND_CHANNEL_ID;
-            msg = `*💼 New Brand*\n🏢: ${document.getElementById('b-name').value}\n📞: ${document.getElementById('b-phone').value}\n💰: ${document.getElementById('b-budget').value}`;
-        }
-
-        try {
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: targetID, text: msg, parse_mode: "Markdown" })
-            });
-            alert("✅ Sent Successfully!"); showHome();
-        } catch (e) { alert("❌ Error! (Bot ID Check Karein)"); }
-        btn.innerText = originalTxt; btn.disabled = false;
-    });
-
-    // --- MOBILE MENU ---
-    const menu = document.querySelector('nav ul');
-    const hamburger = document.querySelector('.hamburger');
-    function toggleMenu() { menu.classList.toggle('active'); hamburger.classList.toggle('active'); }
-
-    // --- STATS FIXED (Using IntersectionObserver) ---
-    // Ye '0 0' wala problem fix karega
-    document.addEventListener("DOMContentLoaded", function() {
-        const counters = document.querySelectorAll('.counter');
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const c = entry.target;
-                    const target = +c.getAttribute('data-target');
-                    let count = 0;
-                    const inc = target / 50; 
-                    const update = () => {
-                        count += inc;
-                        if (count < target) {
-                            c.innerText = Math.ceil(count);
-                            requestAnimationFrame(update);
-                        } else {
-                            c.innerText = target;
-                        }
-                    };
-                    update();
-                    observer.unobserve(c); // Sirf ek baar chalega
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counters.forEach(c => observer.observe(c));
-        
-        // Initial Form State
-        toggleFormFields();
-    });
-
-    // Particles (Try Catch taaki crash na ho)
-    try { particlesJS("particles-js", { "particles": { "number": { "value": 30 }, "color": { "value": "#FFD700" }, "line_linked": { "color": "#FFD700", "opacity": 0.1 } } }); } catch(e){}
+    try { particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#FFD700" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#FFD700", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 2 } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } } }, "retina_detect": true }); } catch(e){}
 </script>
 
 </body>
