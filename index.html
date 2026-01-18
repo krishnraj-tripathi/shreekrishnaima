@@ -17,7 +17,7 @@
     cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgZD0iTTcgMmwxMiAxMS4yNS01LjI1IDEuNSA0LjUgNy41LTIuMjUgMS41LTQuNS03LjUtNC41IDQuNXoiLz48L3N2Zz4='), auto !important;
 }
 
-/* Ensure clickable items also show the golden cursor (instead of default hand) */
+/* Ensure clickable items also show the golden cursor */
 a, button, select, summary, .logo, .submit-btn, .back-link, #sticky-cta {
      cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgZD0iTTcgMmwxMiAxMS4yNS01LjI1IDEuNSA0LjUgNy41LTIuMjUgMS41LTQuNS03LjUtNC41IDQuNXoiLz48L3N2Zz4='), pointer !important;
 }
@@ -80,6 +80,9 @@ nav a:hover { color: var(--gold); }
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 15px 40px; overflow: hidden; }
 .hero-content { opacity: 0; animation: slowZoom 2.5s ease-out forwards; animation-delay: 0.5s; width: 100%; }
 @keyframes slowZoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* Hero Text Styles */
+.navya-tag { color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; display: block; opacity: 0.9; font-weight: 600; }
 .hero h1 { font-weight: 800; line-height: 1.2; margin-bottom: 20px; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .main-title { font-size: 4rem; display: block; }
 .sub-title { font-size: 3rem; display: block; }
@@ -186,6 +189,8 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
 <div id="home-view">
     <section id="home" class="hero">
         <div class="hero-content">
+            <span class="navya-tag">A Venture by Navya Astra</span>
+            
             <h1>
                 <span class="main-title">Shree Krishna</span>
                 <span class="sub-title">Influencer Marketing Agency</span>
@@ -212,7 +217,7 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
     <section id="about">
         <h2>Who We Are</h2>
         <div class="glass-card" style="max-width: 800px; margin: auto;">
-            <p style="color: #ccc; line-height: 1.8;"><strong>Shree Krishna IMA</strong> is not just an agency; it's an ecosystem. We identify high-potential creators and match them with brands that need authentic reach.</p>
+            <p style="color: #ccc; line-height: 1.8;"><strong>Shree Krishna IMA</strong> is not just an agency; it's an ecosystem. Operating under the visionary leadership of <strong>Navya Astra</strong>, we identify high-potential creators and match them with brands that need authentic reach.</p>
         </div>
     </section>
 
@@ -273,8 +278,12 @@ summary { cursor: pointer; font-weight: 600; color: #fff; display: flex; justify
         </div>
     </section>
 
-    <footer style="background:#000; padding:40px; text-align:center; margin-top:50px;">
-        <p>&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
+    <footer style="background:#000; padding:40px; text-align:center; margin-top:50px; border-top: 1px solid rgba(255,215,0,0.1);">
+        <p style="margin-bottom: 15px;">&copy; 2025 Shree Krishna Influencer Marketing Agency</p>
+        
+        <p style="color: #888; font-size: 0.9rem;">
+            Developed & Managed by <span style="color: var(--gold); font-weight: 700; letter-spacing: 1px;">NAVYA ASTRA</span>
+        </p>
     </footer>
 
     <button onclick="showForm()" id="sticky-cta">Join Now</button>
